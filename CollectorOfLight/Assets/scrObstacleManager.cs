@@ -79,8 +79,6 @@ public class scrObstacleManager : MonoBehaviour
 
 	void CreateLightSeries(float x, float z, int length, float spacing)
 	{
-		//float angle = Random.Range (0, 360);
-		//Vector2 direction = new Vector2(Mathf.Sin (angle), Mathf.Cos (angle)); // Initial direction through which the orbs will be generated.
 		Vector2 direction = new Vector2(x, z) - scrLandscape.Instance.GetCentre();
 		direction.Normalize();
 

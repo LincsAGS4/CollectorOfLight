@@ -5,7 +5,7 @@ public class scrPool : MonoBehaviour
 {
 	public string Name;
 	public int Capacity;
-	public int Available { get; private set; }
+	public int Remaining { get; private set; }
 	public GameObject Prefab;
 
 	private scrPoolable[] pool;
@@ -27,21 +27,24 @@ public class scrPool : MonoBehaviour
 			pool[i].gameObject.SetActive(false);
 		}
 
-		Available = Capacity;
+		Remaining = Capacity;
 	}
 	
 	// Update is called once per frame
 	void Update ()
 	{
-		// Loop through the pool and, if any of the objects have become inactive, make them available by pointing their link towards the available index then making the index point to them.
+		// Loop through the pool and, if any of the objects have expired, make them available by pointing their link towards the available index then making the index point to them.
 		for (int i = 0; i < Capacity; ++i)
 		{
-			if (!pool[i].gameObject.activeSelf)
+			if (pool[i].gameObject.activeSelf && pool[i].Expired)
 			{
+				// Deactivate the pool item.
+				pool[i].gameObject.SetActive(false);
+
 				links[i] = index;
 				index = i;
 
-				++Available;
+				++Remaining;
 			}
 		}
 	}
@@ -58,7 +61,7 @@ public class scrPool : MonoBehaviour
 			// Shift the index to the next available item.
 			index = links[index];
 
-			--Available;
+			--Remaining;
 
 			return item;
 		}

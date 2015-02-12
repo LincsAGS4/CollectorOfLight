@@ -7,8 +7,9 @@ public class scrLightOrb : scrPoolable
 	const float BOB_HEIGHT = 1.0f;	// Maximum height of a bob.
 	const float BOB_RATE = 0.5f;	// Rate at which the light bobs up and down.
 
-	public scrLightOrb Previous { get; set; }
-	public scrLightOrb Next { get; set; }
+	private scrLightOrb previous, next;
+	private int seriesIndex;	// The index of this orb in its series. Since the indexes will remain the same after being initially set, it will be easy to tell the state of the series through recursion if necessary.
+	private int seriesLength;	// The length of the series.
 
 	private Vector3 spawnPosition;
 	private LineRenderer line;
@@ -20,40 +21,83 @@ public class scrLightOrb : scrPoolable
 
 	void Update ()
 	{
+		// If the entire series is out of bounds, deactivate the whole series.
+		DeactivateIfSeriesOutOfBounds();
+
 		// Bob up and down.
 		transform.position = new Vector3(spawnPosition.x, spawnPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (spawnPosition.x + spawnPosition.y + spawnPosition.z + Time.time * BOB_RATE), spawnPosition.z);
 	
-		// Draw a line to the next orb.
-		if (Next != null)
+		// Draw a line to the next orb as long as the next orb is the next in the series, otherwise the series has been broken at some point.
+		if (next != null && next.seriesIndex == seriesIndex + 1)
 		{
 			line.SetPosition(0, transform.position);
-			line.SetPosition(1, Next.transform.position);
+			line.SetPosition(1, next.transform.position);
 		}
-	
 	}
 
 	void OnTriggerEnter(Collider other)
 	{
-		// Break the line.
-		if (Next != null)
-			Next.Previous = null;
+		// Remove this orb from the series by connecting the next and previous orbs.
+		if (next != null)
+			next.previous = previous;
 
-		if (Previous != null)
+		if (previous != null)
 		{
-			Previous.Next = null;
+			previous.next = next;
 
 			// Clear vertices from previous node's line renderer so that it doesn't render anything.
-			Previous.line.SetVertexCount(0);
+			previous.line.SetVertexCount(0);
 		}
 
-		line.SetVertexCount(0);
+		// Deactivate.
+		Expired = true;
+	}
+	
+	void DeactivateIfSeriesOutOfBounds() // Perhaps make this a coroutine.
+	{
+		// If this orb is not out of bounds, the whole series is not out of bounds.
+		if (scrLandscape.Instance.Contains(transform.position))
+			return;
 
-		gameObject.SetActive(false);
+		// Move backwards until the first in the series is found.
+		scrLightOrb first = this;
+		while (first.previous != null)
+			first = first.previous;
+
+		// Move forwards until the end of the series.
+		scrLightOrb orb = first;
+		while (orb != null)
+		{
+			//  The series is not out of bounds if just one of them is in bounds. Also skip the check for this orb as has already been checked.
+			if (orb != this && scrLandscape.Instance.Contains(orb.transform.position))
+				return;
+
+			orb = orb.next;
+		}
+
+		// The function didn't return early, so the series is fully out of bounds. Deactivate all orbs in the series from the first to the last.
+		while (first != null)
+		{
+			first.Expired = true;		
+			first = first.next;
+		}
+	}
+	
+
+	public void SetInitialLink(scrLightOrb link)
+	{
+		if (link != null)
+		{
+			// Link the previous orb to this orb.
+			previous = link;
+			link.next = this;
+			link.line.SetVertexCount(2);
+		}
 	}
 
-	// ---- IPoolable ----
+	// ---- scrPoolable ----
 
-	/// <param name="initParams">float x, float z</param>
+	/// <param name="initParams">float x, float z, int seriesIndex, int seriesLength</param>
 	public override void Init(params object[] initParams)
 	{
 		float x = (float)initParams[0];
@@ -61,10 +105,13 @@ public class scrLightOrb : scrPoolable
 		spawnPosition = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
 		transform.position = new Vector3(spawnPosition.x, spawnPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (spawnPosition.x + spawnPosition.y + Time.time * BOB_RATE), spawnPosition.z);
 
-		Next = null;
-		Previous = null;
+		seriesIndex = (int)initParams[2];
+		seriesLength = (int)initParams[3];
 
-		line.SetVertexCount(2);
+		next = null;
+		previous = null;
+
+		line.SetVertexCount(0);
 	}
 
 }

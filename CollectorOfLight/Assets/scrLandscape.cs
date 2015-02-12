@@ -6,10 +6,10 @@ public class scrLandscape : MonoBehaviour
 	public static scrLandscape Instance { get; private set; }
 
 	// Handy consts for grid generation.
-	const int GRID = 100;		// Verts per dimension. (1 + cells per dimension)
-	const int CELL_SCALE = 5;							// Units per dimension of each cell.
-	const int GRID_SCALE = (GRID - 1) * CELL_SCALE;		// Units per dimension of grid.
-	const float HALF_GRID_SCALE = GRID_SCALE * 0.5f;	// Half the grid scale, handy for removing tonnes of multiplication.
+	public const int GRID = 100;		// Verts per dimension. (1 + cells per dimension)
+	public const int CELL_SCALE = 10;							// Units per dimension of each cell.
+	public const int GRID_SCALE = (GRID - 1) * CELL_SCALE;		// Units per dimension of grid.
+	public const float HALF_GRID_SCALE = GRID_SCALE * 0.5f;	// Half the grid scale, handy for removing tonnes of multiplication.
 
 	// For blurring.
 	Vector2[] neighbourOffsets = new Vector2[] { new Vector2(-1, 0), new Vector2(1, 0), new Vector2(0, -1), new Vector2(0, 1), new Vector2(-1, -1), new Vector2(1, -1), new Vector2(-1, 1), new Vector2(1, 1) };
@@ -18,9 +18,8 @@ public class scrLandscape : MonoBehaviour
 	public float Uniformity = 128;	// Size of random noise, higher = more uniform terrain.
 	public int Seed = 0;	// Seed for random noise.
 	public int Smooth = 0;	// Blur passes.
-
+	
 	public Transform Player;
-
 	Vector2 origin;
 
 	Vector3[] vertices;
@@ -59,13 +58,17 @@ public class scrLandscape : MonoBehaviour
 		// Return perlin noise, offset by the seed, with size based on flatness.
 		return Mathf.PerlinNoise(x / Uniformity + Seed, z / Uniformity + Seed) * MaxHeight;
 	}
+
+	public bool Contains(Vector3 position)
+	{
+		return !(position.x < GetLeft () || position.x > GetRight () || position.z < GetBack() || position.z > GetFront ());
+	}
 	
 	// Generates all vertices.
 	void GenerateVertices()
 	{
 		origin = new Vector2((int)((Player.position.x - HALF_GRID_SCALE) / CELL_SCALE) * CELL_SCALE,
 		                     (int)((Player.position.z - HALF_GRID_SCALE) / CELL_SCALE) * CELL_SCALE);
-		
 		
 		float wx = 0, wy = 0, wz = 0;	// World x, y, z.
 

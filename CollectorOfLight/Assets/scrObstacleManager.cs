@@ -8,8 +8,7 @@ public class scrObstacleManager : MonoBehaviour
 
 	private const int LIGHT_LENGTH_MIN = 5;
 	private const int LIGHT_LENGTH_MAX = 15;
-	private float lightSpawnTimer = 0;
-	private float lightSpawnDelay = 10;
+	private float distanceToNextLight = 0;
 	private scrPool lightPool;
 
 	private Dictionary<Vector2, GameObject> occupied = new Dictionary<Vector2, GameObject>();	// All occupied positions in world space.
@@ -27,43 +26,55 @@ public class scrObstacleManager : MonoBehaviour
 
 	void Update ()
 	{
-		lightSpawnTimer += Time.deltaTime;
-		if (lightSpawnTimer >= lightSpawnDelay)
-		{
-			lightSpawnTimer = 0;
 
-			Vector2 position;
-			if (RetrieveFreePosition(out position))
-			{
-				CreateLightSeries(position.x, position.y, Random.Range (LIGHT_LENGTH_MIN, LIGHT_LENGTH_MAX + 1), 5);
-			}
-		}
+		DecreaseDistances(transform.forward);
+
 	}
 
-	
-	bool RetrieveFreePosition(out Vector2 outPosition)
+	public void DecreaseDistances(Vector3 velocity)
+	{
+		// Decrease light distance.
+		distanceToNextLight -= velocity.magnitude * Time.deltaTime;
+		if (distanceToNextLight <= 0)
+		{
+			distanceToNextLight = 0.05f; // number is debug, maybe random between min and max values.
+
+			// Create a series of light-orbs somewhere in the distance in the direction the player is moving.
+			Vector2 lightPosition;
+			if (RetrieveFreePositionInDirection(new Vector2(velocity.x, velocity.z), scrLandscape.HALF_GRID_SCALE / 2, out lightPosition))
+		    {
+				CreateLightSeries(lightPosition.x, lightPosition.y, Random.Range (LIGHT_LENGTH_MIN, LIGHT_LENGTH_MAX + 1), 5);
+			}
+		}
+
+	}
+
+	bool RetrieveFreePositionInDirection(Vector2 direction, float minDistance, out Vector2 outPosition)
 	{
 		float left = scrLandscape.Instance.GetLeft();
 		float right = scrLandscape.Instance.GetRight();
 		float front = scrLandscape.Instance.GetFront();
 		float back = scrLandscape.Instance.GetBack();
-
+		
 		// Get all possible points.
 		Vector2 position;
 		List<Vector2> free = new List<Vector2>();
-
+		
 		for (float x = left; x < right; x += OBSTACLE_SPACING)
 		{
 			for (float z = back; z < front; z += OBSTACLE_SPACING)
 			{
 				position = new Vector2(x, z);
 
-				// If the point is in the dictionary, do not add it to the free list.
-				if (!occupied.ContainsKey(position))
+				if (Vector2.Distance(position, scrLandscape.Instance.GetCentre()) >= minDistance &&	// Check that the position is further than the minimum distance.
+					Vector2.Angle (position - scrLandscape.Instance.GetCentre(), direction) < 45 &&	// Check that the position is within a 45 degree arc from the direction.
+				    !occupied.ContainsKey(position)) 												// Check that the position is not already occupied.
+				{
 					free.Add(position);
+				}
 			}
 		}
-
+		
 		if (free.Count == 0)
 		{
 			outPosition = Vector2.zero;
@@ -85,13 +96,13 @@ public class scrObstacleManager : MonoBehaviour
 		float bend = Random.Range (-0.2f, 0.2f); // Amount the direction bends per orb.
 
 		// Make sure it is possible to produce the length of string required.
-		if (length > lightPool.Available)
+		if (length > lightPool.Remaining)
 		{
 			// There aren't enough orbs available for a string, so cease creation.
-			if (lightPool.Available < LIGHT_LENGTH_MIN)
+			if (lightPool.Remaining < LIGHT_LENGTH_MIN)
 				return;
 
-			length = lightPool.Available;
+			length = lightPool.Remaining;
 		}
 
 		Vector2 position = new Vector2(x, z);
@@ -99,12 +110,10 @@ public class scrObstacleManager : MonoBehaviour
 		for (int i = 0; i < length; ++i)
 		{
 			// Create an orb.
-			scrLightOrb current = (scrLightOrb)lightPool.Create(position.x, position.y);
+			scrLightOrb current = (scrLightOrb)lightPool.Create(position.x, position.y, i, length);
 
-			// Link to the previous orb.
-			current.Previous = previous;
-			if (previous != null)
-				previous.Next = current;
+			// Link the orb to the previous orb.
+			current.SetInitialLink(previous);
 
 			// Prepare for the next orb.
 			previous = current;

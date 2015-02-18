@@ -1,12 +1,12 @@
 ﻿using UnityEngine;
 using System.Collections;
 
-public class scrPool : MonoBehaviour
+public sealed class scrPool : MonoBehaviour
 {
-	public string Name;
+	public string Identifier;
 	public int Capacity;
 	public int Remaining { get; private set; }
-	public GameObject Prefab;
+	public GameObject[] Prefabs;
 
 	private scrPoolable[] pool;
 	private int[] links;
@@ -21,9 +21,11 @@ public class scrPool : MonoBehaviour
 
 		for (int i = 0; i < Capacity; ++i)
 		{
-			pool[i] = ((GameObject)Instantiate(Prefab)).GetComponent<scrPoolable>();
+			// Instantiate each prefab, hopefully an equal amount of each.
+			pool[i] = ((GameObject)Instantiate(Prefabs[i % Prefabs.Length])).GetComponent<scrPoolable>();
 			links[i] = i + 1;
 		
+			pool[i].transform.SetParent(transform);
 			pool[i].gameObject.SetActive(false);
 		}
 

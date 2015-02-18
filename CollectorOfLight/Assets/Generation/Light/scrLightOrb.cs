@@ -19,11 +19,8 @@ public class scrLightOrb : scrPoolable
 		line = GetComponent<LineRenderer>();
 	}
 
-	void Update ()
+	protected override void Update ()
 	{
-		// If the entire series is out of bounds, deactivate the whole series.
-		DeactivateIfSeriesOutOfBounds();
-
 		// Bob up and down.
 		transform.position = new Vector3(spawnPosition.x, spawnPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (spawnPosition.x + spawnPosition.y + spawnPosition.z + Time.time * BOB_RATE), spawnPosition.z);
 	
@@ -33,6 +30,8 @@ public class scrLightOrb : scrPoolable
 			line.SetPosition(0, transform.position);
 			line.SetPosition(1, next.transform.position);
 		}
+
+		base.Update();
 	}
 
 	void OnTriggerEnter(Collider other)
@@ -53,36 +52,6 @@ public class scrLightOrb : scrPoolable
 		Expired = true;
 	}
 	
-	void DeactivateIfSeriesOutOfBounds() // Perhaps make this a coroutine.
-	{
-		// If this orb is not out of bounds, the whole series is not out of bounds.
-		if (scrLandscape.Instance.Contains(transform.position))
-			return;
-
-		// Move backwards until the first in the series is found.
-		scrLightOrb first = this;
-		while (first.previous != null)
-			first = first.previous;
-
-		// Move forwards until the end of the series.
-		scrLightOrb orb = first;
-		while (orb != null)
-		{
-			//  The series is not out of bounds if just one of them is in bounds. Also skip the check for this orb as has already been checked.
-			if (orb != this && scrLandscape.Instance.Contains(orb.transform.position))
-				return;
-
-			orb = orb.next;
-		}
-
-		// The function didn't return early, so the series is fully out of bounds. Deactivate all orbs in the series from the first to the last.
-		while (first != null)
-		{
-			first.Expired = true;		
-			first = first.next;
-		}
-	}
-	
 
 	public void SetInitialLink(scrLightOrb link)
 	{
@@ -100,6 +69,8 @@ public class scrLightOrb : scrPoolable
 	/// <param name="initParams">float x, float z, int seriesIndex, int seriesLength</param>
 	public override void Init(params object[] initParams)
 	{
+		Expired = false;
+
 		float x = (float)initParams[0];
 		float z = (float)initParams[1];
 		spawnPosition = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
@@ -112,6 +83,36 @@ public class scrLightOrb : scrPoolable
 		previous = null;
 
 		line.SetVertexCount(0);
+	}
+
+	protected override void ExpireWhenOutOfBounds()
+	{
+		// If this orb is not out of bounds, the whole series is not out of bounds.
+		if (scrLandscape.Instance.Contains(transform.position))
+			return;
+		
+		// Move backwards until the first in the series is found.
+		scrLightOrb first = this;
+		while (first.previous != null)
+			first = first.previous;
+		
+		// Move forwards until the end of the series.
+		scrLightOrb orb = first;
+		while (orb != null)
+		{
+			//  The series is not out of bounds if just one of them is in bounds. Also skip the check for this orb as has already been checked.
+			if (orb != this && scrLandscape.Instance.Contains(orb.transform.position))
+				return;
+			
+			orb = orb.next;
+		}
+		
+		// The function didn't return early, so the series is fully out of bounds. Deactivate all orbs in the series from the first to the last.
+		while (first != null)
+		{
+			first.Expired = true;		
+			first = first.next;
+		}
 	}
 
 }

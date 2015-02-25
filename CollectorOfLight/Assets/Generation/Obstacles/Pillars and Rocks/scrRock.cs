@@ -5,10 +5,18 @@ public class scrRock : scrPoolable
 {
 	public float scaleMin = 1.0f;
 	public float scaleMax = 10.0f;
+	bool physicsActive = false;
 
 	protected override void Update ()
 	{
-		scrLandscape.Instance.GetNormalFromNoise(transform.position.x, transform.position.z, 1.0f);
+		if (!physicsActive)
+		{
+			physicsActive = scrLandscape.Instance.PhysContains(transform.position);
+			if (physicsActive)
+				scrLandscape.Instance.GetNormal(transform.position.x, transform.position.z);
+			else
+				scrLandscape.Instance.GetNormalFromNoise(transform.position.x, transform.position.z, 1.0f);
+		}
 
 		base.Update ();
 	}
@@ -19,6 +27,7 @@ public class scrRock : scrPoolable
 	public override void Init(params object[] initParams)
 	{
 		Expired = false;
+		physicsActive = false;
 		
 		float x = (float)initParams[0];
 		float z = (float)initParams[1];

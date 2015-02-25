@@ -51,6 +51,8 @@ public abstract class scrGenerator : MonoBehaviour
 	}
 	#endregion
 
+	public bool Generating;
+
 	protected float distanceRequired;	// Distance required for the player to move for something to spawn.
 	protected float distanceOffset = 0;	// Boundary value to randomly increase/decrease the remaining distance by.
 	protected float distanceRemaining = 0;	// Distance the player has left to move.
@@ -67,12 +69,15 @@ public abstract class scrGenerator : MonoBehaviour
 
 	protected virtual void Update()
 	{
-		distanceRemaining -= scrPlayer.Instance.Speed2D * Time.deltaTime;
-
-		if (distanceRemaining <= 0)
+		if (Generating)
 		{
-			Generate();
-			distanceRemaining = distanceRequired + Random.Range (-distanceOffset, distanceOffset);
+			distanceRemaining -= scrPlayer.Instance.Speed2D * Time.deltaTime;
+
+			if (distanceRemaining <= 0)
+			{
+				Generate();
+				distanceRemaining = distanceRequired + Random.Range (-distanceOffset, distanceOffset);
+			}
 		}
 	}
 

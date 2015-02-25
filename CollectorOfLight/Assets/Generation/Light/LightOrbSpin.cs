@@ -3,16 +3,9 @@ using System.Collections;
 
 public class LightOrbSpin : MonoBehaviour 
 {
-    private int i;
-    public int spinRate;
+	public int spinRate;
     public GameObject lightOrb;
-
-	// Use this for initialization
-	void Start ()
-    {
-        i = 0;
-	}
-	
+		
 	// Update is called once per frame
 	void Update () 
     {

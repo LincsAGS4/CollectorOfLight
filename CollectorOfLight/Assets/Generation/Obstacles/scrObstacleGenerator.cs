@@ -3,8 +3,8 @@ using System.Collections;
 
 public class scrObstacleGenerator : scrGenerator
 {
-	private const float DISTANCE_MAX = 100.0f;
-	private const float DISTANCE_MIN = 20.0f;
+	private const float DISTANCE_MAX = 2.0f;
+	private const float DISTANCE_MIN = 0.1f;
 	private const float DISTANCE_REDUCTION_PER_LIGHT = 1.0f;
 
 	private const int GENERATIONS_MIN = 5;
@@ -31,7 +31,7 @@ public class scrObstacleGenerator : scrGenerator
 
 	protected override void Generate ()
 	{
-		if (scrPlayer.Instance.LightScore == 0) return;	// Do not generate if player has no light.
+		if (PlayerController.Instance.LightScore == 0) return;	// Do not generate if player has no light.
 
 		// Check for a free position.
 		Vector2 position;
@@ -81,6 +81,6 @@ public class scrObstacleGenerator : scrGenerator
 			}
 		}
 
-		distanceRequired = Mathf.Max(DISTANCE_MAX - DISTANCE_REDUCTION_PER_LIGHT * scrPlayer.Instance.LightScore, DISTANCE_MIN);		// Reduce the distance required by the amount of light the player has.
+		distanceRequired = Mathf.Max(DISTANCE_MAX - DISTANCE_REDUCTION_PER_LIGHT * PlayerController.Instance.LightScore, DISTANCE_MIN);		// Reduce the distance required by the amount of light the player has.
 	}
 }

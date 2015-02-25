@@ -18,7 +18,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
     
     private float powerupDuration;  //The duration of a powerup's effects, used in the above formula.
 
-    private float rotationAngle;    //The angle the wheelchair is currently facing, and hence the angle the Ellek is turning towards
+    public float rotationAngle;    //The angle the wheelchair is currently facing, and hence the angle the Ellek is turning towards
     private float maxGoalAngle;     //The maximum angle the Ellek can turn to, or even try to, currently set at 60 degrees / 1.047 radians
 
     public float maxSpeed;          /*The absolute maximum limit of the creature's speed (shouldn't be needed but the 
@@ -38,7 +38,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
         rotationAngle = 0.0f;
         maxGoalAngle = 1.047f;
 
-        turnScale = (1 / 60);
+        turnScale = (1.0f / 30.0f);
 
         boostActive = false;
         boostedSpeed = 0.15f;
@@ -47,18 +47,15 @@ public class EllekMoveScript : MobileObstacleMoveScript
         speedDecayRate = Mathf.Log((standardSpeed / boostedSpeed) / -powerupDuration);
 	}
 	
-	// Update is called once per frame
 	protected override void SpecificMovement() 
     {
-        float currentAngle = container.transform.eulerAngles.y;
-
-        //scale down the angle the player is turned at and use it to update the current angle
-        float turnRate = rotationAngle * (turnScale);
-        currentAngle += turnRate;
+		//scale down the angle the player is turned at and use it to update the current angle
+        float currentAngle = container.transform.eulerAngles.y + (rotationAngle * (turnScale) / (Mathf.PI / 180));
+		container.transform.eulerAngles = new Vector3 (0, currentAngle, 0);
 
         //If speed has been changed, adjust speed towards standard speed using exponential decay
         //Speed at time t == maxSpeed * e ^ (speedDecayRate * t)
-        if (boostActive)
+        /*if (boostActive)
         {
             timeSinceBoost = Time.time - lastBoostTime;
 
@@ -70,13 +67,13 @@ public class EllekMoveScript : MobileObstacleMoveScript
                 currentSpeed = standardSpeed;
                 boostActive = false;
             }
-        }
+        }*/
 	}
 
     //Attempt to change the angle of the Ellek, only accepts a range of +/- 60 degrees (max turning arc of the Ellek)
     public bool ChangeAngle(float newGoalAngle)
     {
-        if (newGoalAngle > -maxGoalAngle && newGoalAngle < maxGoalAngle)
+        if (newGoalAngle > -1*maxGoalAngle && newGoalAngle < maxGoalAngle)
         {
             rotationAngle = newGoalAngle;
             return true;

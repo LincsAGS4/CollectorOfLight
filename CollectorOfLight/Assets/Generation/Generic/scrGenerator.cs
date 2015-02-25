@@ -6,7 +6,7 @@ using System.Collections.Generic;
 public abstract class scrGenerator : MonoBehaviour
 {
 	#region Static
-	public const float SPACING = 100.0f;	// Space between possible generation positions.
+	public const float SPACING = 10.0f;	// Space between possible generation positions.
 	protected static HashSet<Vector2> occupied = new HashSet<Vector2>();	// All occupied positions in world space.
 
 	public static bool GetFreePosition(out Vector2 outPosition, float minHeight = float.MinValue, float maxHeight = float.MaxValue, float clearDistance = SPACING * 0.5f)
@@ -29,7 +29,7 @@ public abstract class scrGenerator : MonoBehaviour
 				float height = scrLandscape.Instance.GetHeight(x, z);
 				if (height >= minHeight && height <= maxHeight && // Check that the position gives a height within the allowed range.
 					Vector2.Distance(position, scrLandscape.Instance.GetCentre()) >= scrLandscape.HALF_GRID_SCALE * 0.8f &&	// Check that the position is further than the minimum distance.
-				    Vector2.Angle (position - scrLandscape.Instance.GetCentre(), scrPlayer.Instance.Velocity2D) < 45 &&	// Check that the position is within a 45 degree arc from the direction.
+				    Vector2.Angle (position - scrLandscape.Instance.GetCentre(), PlayerController.Instance.Velocity2D) < 45 &&	// Check that the position is within a 45 degree arc from the direction.
 				    !Physics.CheckSphere(new Vector3(x, height, z), clearDistance))	// Check that the position isn't already taken by something (other than the ground).
 				{
 					free.Add(position);
@@ -71,7 +71,7 @@ public abstract class scrGenerator : MonoBehaviour
 	{
 		if (Generating)
 		{
-			distanceRemaining -= scrPlayer.Instance.Speed2D * Time.deltaTime;
+			distanceRemaining -= PlayerController.Instance.Speed2D * Time.deltaTime;
 
 			if (distanceRemaining <= 0)
 			{

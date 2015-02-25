@@ -21,7 +21,7 @@ public class scrPowerupGenerator : scrGenerator
 
 	protected override void Generate ()
 	{
-		if (scrPlayer.Instance.LightScore == 0) return;	// Do not generate if player has no light.
+		if (PlayerController.Instance.LightScore == 0) return;	// Do not generate if player has no light.
 
 		// Check for a free position.
 		Vector2 position;
@@ -34,6 +34,6 @@ public class scrPowerupGenerator : scrGenerator
 			scrPoolable powerup = pool.Create(position.x, position.y, effect);
 		}
 
-		distanceRequired = Mathf.Max(DISTANCE_MAX - DISTANCE_REDUCTION_PER_LIGHT * scrPlayer.Instance.LightScore, DISTANCE_MIN);		// Reduce the distance required by the amount of light the player has.
+		distanceRequired = Mathf.Max(DISTANCE_MAX - DISTANCE_REDUCTION_PER_LIGHT * PlayerController.Instance.LightScore, DISTANCE_MIN);		// Reduce the distance required by the amount of light the player has.
 	}
 }

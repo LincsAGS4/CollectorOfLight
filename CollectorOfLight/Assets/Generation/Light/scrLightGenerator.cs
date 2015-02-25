@@ -10,8 +10,8 @@ public sealed class scrLightGenerator : scrGenerator
 
 	private void Start()
 	{
-		distanceRequired = 30.0f;
-		distanceOffset = 10.0f;
+		distanceRequired = 2.0f;
+		distanceOffset = 1.0f;
 		pool = pools["Light"];
 	}
 	

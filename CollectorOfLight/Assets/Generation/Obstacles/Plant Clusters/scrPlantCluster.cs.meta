@@ -1,0 +1,12 @@
+fileFormatVersion: 2
+guid: c48a15e75db59264695a551ac6d76f7a
+MonoImporter:
+  serializedVersion: 2
+  defaultReferences:
+  - PlantAPrefab: {fileID: 102674, guid: 1efaff928b816284fbbccad9fe7aaf9a, type: 2}
+  - PlantBPrefab: {fileID: 191106, guid: 3f5d76f19691a9d4985d2f4082afca8e, type: 2}
+  - PlantCPrefab: {fileID: 172606, guid: 4d8d61bf2d133364890722e066df3e81, type: 2}
+  - PlantDPrefab: {fileID: 158678, guid: 13d037e56ee5b3542802b9b87029851f, type: 2}
+  executionOrder: 0
+  icon: {instanceID: 0}
+  userData: 

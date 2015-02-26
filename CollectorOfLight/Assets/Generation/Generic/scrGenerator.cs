@@ -7,7 +7,7 @@ public abstract class scrGenerator : MonoBehaviour
 {
 	#region Static
 	public const float SPACING = 10.0f;	// Space between possible generation positions.
-	protected static HashSet<Vector2> occupied = new HashSet<Vector2>();	// All occupied positions in world space.
+	public static HashSet<Vector2> Occupied = new HashSet<Vector2>();	// All occupied positions in world space.
 
 	public static bool GetFreePosition(out Vector2 outPosition, float minHeight = float.MinValue, float maxHeight = float.MaxValue, float clearDistance = SPACING * 0.5f)
 	{
@@ -33,6 +33,7 @@ public abstract class scrGenerator : MonoBehaviour
 				    !Physics.CheckSphere(new Vector3(x, height, z), clearDistance))	// Check that the position isn't already taken by something (other than the ground).
 				{
 					free.Add(position);
+					
 				}
 			}
 		}

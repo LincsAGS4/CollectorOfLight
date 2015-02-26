@@ -3,12 +3,12 @@ using System.Collections;
 
 public class scrObstacleGenerator : scrGenerator
 {
-	private const float DISTANCE_MAX = 2.0f;
-	private const float DISTANCE_MIN = 0.1f;
+	private const float DISTANCE_MAX = 20.0f;
+	private const float DISTANCE_MIN = 2.0f;
 	private const float DISTANCE_REDUCTION_PER_LIGHT = 1.0f;
 
-	private const int GENERATIONS_MIN = 5;
-	private const int GENERATIONS_MAX = 10;
+	private const int GENERATIONS_MIN = 1;
+	private const int GENERATIONS_MAX = 5;
 	private const float GENERATION_INCREASE_PER_LIGHT = 0.1f;	// Since generations are int, values < 1 increment generations when >1 light is collected.
 
 	private const int GENERATIONS_UNTIL_LARGE_TREE_MIN = 5;
@@ -42,7 +42,7 @@ public class scrObstacleGenerator : scrGenerator
 
 			if (generationsUntilLargeTree <= 0)
 			{
-				if (GetFreePosition(out position, scrLandscape.Instance.HighestPoint.y - (scrLandscape.Instance.HighestPoint.y - scrLandscape.Instance.LowestPoint.y) * 0.2f, scrLandscape.Instance.MaxHeight, 200))
+				if (GetFreePosition(out position, scrLandscape.Instance.HighestPoint.y - (scrLandscape.Instance.HighestPoint.y - scrLandscape.Instance.LowestPoint.y) * 0.3f, scrLandscape.Instance.MaxHeight, 20))
 				{
 					pools["Large Trees"].Create (position.x, position.y);
 					generationsUntilLargeTree = Random.Range (GENERATIONS_UNTIL_LARGE_TREE_MIN, GENERATIONS_UNTIL_LARGE_TREE_MAX + 1);

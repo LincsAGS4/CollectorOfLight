@@ -3,8 +3,8 @@ using System.Collections;
 
 public class scrPowerup : scrPoolable
 {
-	const float LEVITATE_HEIGHT = 4.0f;	// Height above the ground the light bobs up and down.
-	const float BOB_HEIGHT = 1.0f;	// Maximum height of a bob.
+	const float LEVITATE_HEIGHT = 0.4f;	// Height above the ground the light bobs up and down.
+	const float BOB_HEIGHT = 0.2f;	// Maximum height of a bob.
 	const float BOB_RATE = 0.5f;	// Rate at which the light bobs up and down.
 
 	public enum Powerup
@@ -37,18 +37,22 @@ public class scrPowerup : scrPoolable
 		{
 		case Powerup.Speed:
 			// Make red.
+			GetComponent<ParticleSystem>().startColor = Color.red;
 
 			break;
 		case Powerup.Ghost:
 			// Make blue.
+			GetComponent<ParticleSystem>().startColor = Color.blue;
 
 			break;
 		case Powerup.Magnet:
 			// Make pink.
+			GetComponent<ParticleSystem>().startColor = Color.magenta;
 
 			break;
 		case Powerup.MoreLight:
 			// Make yellow.
+			GetComponent<ParticleSystem>().startColor = Color.yellow;
 
 			break;
 		}

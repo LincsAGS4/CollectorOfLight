@@ -17,17 +17,38 @@ public abstract class MobileObstacleMoveScript : MonoBehaviour
 
     protected Time time;              //Used to track time for exponential decays
 
+	public bool RagdollActive = false;
+	protected float ragdollDuration = 3.0f;
+	protected float ragdollTimer = 0.0f;
+
 	// Use this for initialization
-	void Start () 
+	void Awake () 
     {
-        currentSpeed = 0.1f;
-        standardSpeed = 0.10f;
+		standardSpeed = currentSpeed;
         
 	}
 	
 	// Update is called once per frame
 	void Update () 
     {
+		if (RagdollActive)
+		{
+			ragdollTimer += Time.deltaTime;
+			if (ragdollTimer >= ragdollDuration)
+			{
+				RagdollActive = false;
+				rigidbody.isKinematic = true;
+
+				transform.position = model.transform.position;
+				Vector3 modelPos = transform.position;
+				transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
+				model.transform.position = modelPos;
+
+			}
+
+			return;
+		}
+
         SpecificMovement();
 
         Vector3 speedAdjustNormal = scrLandscape.Instance.GetNormal(container.transform.position.x, container.transform.position.z);
@@ -45,29 +66,43 @@ public abstract class MobileObstacleMoveScript : MonoBehaviour
         //Convert move speed to translation, translate Ellek along xz directions by its speed
 		Vector3 newContainerPos = container.transform.position;
 
-		newContainerPos += transform.forward * adjustedSpeed;
+		newContainerPos += transform.forward * adjustedSpeed * Time.deltaTime;
 
 		Vector3 newModelPos = container.transform.position;
         //update the new position with the y position from terrain
 		newModelPos.y = scrLandscape.Instance.GetHeightFromNoise (newContainerPos.x, newContainerPos.z);// + model.transform.localScale.y * 0.5f;
 
         //The position won't be changed from here on out, so it can now be pushed to the container
-		container.transform.position = newContainerPos;
+		rigidbody.MovePosition(newContainerPos);
 		model.transform.position = newModelPos;
 
         #region RotatingToNormal
         //raycast at the new position
-		Vector3 up = scrLandscape.Instance.GetNormalFromNoise(container.transform.position.x, container.transform.position.z, 0.1f);
+		Vector3 up = scrLandscape.Instance.GetNormalFromNoise(container.transform.position.x, container.transform.position.z, 1.0f);
 		//model.transform.up = Vector3.Lerp (model.transform.up, up, 0.5f);
 		//model.transform.forward = transform.forward;
 
 		Quaternion prevRot = model.transform.rotation;
 		model.transform.LookAt(model.transform.position + transform.forward, up);
-		model.transform.rotation = Quaternion.Lerp (prevRot, model.transform.rotation, 0.4f);
-		model.transform.position += model.transform.up * 0.5f;
-		//model.transform.position += up * model.transform.localScale.y * 0.5f;
+		model.transform.rotation = Quaternion.Lerp (prevRot, model.transform.rotation, 0.8f);
+		model.transform.position += model.transform.up * model.transform.localScale.y;
         #endregion
     }
+
+	public void Ragdollize()
+	{
+		// Since the model isn't boned right now, simply enable the rigidbody component.
+		RagdollActive = true;
+		ragdollTimer = 0.0f;
+		rigidbody.isKinematic = false;
+
+		transform.position = model.transform.position;
+		model.transform.localPosition = Vector3.zero;
+
+		// Bounce back.
+		rigidbody.velocity = (transform.up - transform.forward).normalized * rigidbody.mass * 10;
+		rigidbody.AddTorque(Random.rotation.eulerAngles * 5, ForceMode.Impulse);
+	}
 
     //to be overwritten by an inheriting class with the specific adjustments to direction and speed BEFORE adjustments
     protected abstract void SpecificMovement();

@@ -20,8 +20,8 @@ public class scrPlantCluster : scrPoolable
 	const int VISIBLE_PLANTS_MAX = 16;
 	const float SCATTER_RADIUS_MIN = 10;
 	const float SCATTER_RADIUS_MAX = 40;
-	const float PLANT_SCALE_MIN = 1.0f;
-	const float PLANT_SCALE_MAX = 10.0f;
+	const float PLANT_SCALE_MIN = 0.8f;
+	const float PLANT_SCALE_MAX = 3.0f;
 
 	private Transform[] allChildren = new Transform[TOTAL_PLANTS];
 	private Transform[] activeChildren;	// The children of this object that have been activated.

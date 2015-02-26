@@ -3,15 +3,16 @@ using System.Collections;
 
 public class scrLightOrb : scrPoolable
 {
-	const float LEVITATE_HEIGHT = 4.0f;	// Height above the ground the light bobs up and down.
-	const float BOB_HEIGHT = 1.0f;	// Maximum height of a bob.
+	const float LEVITATE_HEIGHT = 0.4f;	// Height above the ground the light bobs up and down.
+	const float BOB_HEIGHT = 0.2f;	// Maximum height of a bob.
 	const float BOB_RATE = 0.5f;	// Rate at which the light bobs up and down.
 
 	private scrLightOrb previous, next;
 	private int seriesIndex;	// The index of this orb in its series. Since the indexes will remain the same after being initially set, it will be easy to tell the state of the series through recursion if necessary.
 	private int seriesLength;	// The length of the series.
 
-	private Vector3 spawnPosition;
+	public Vector3 SpawnPosition { get; private set; }
+	public Vector3 AnchorPosition;
 	private LineRenderer line;
 
 	void Awake ()
@@ -22,7 +23,7 @@ public class scrLightOrb : scrPoolable
 	protected override void Update ()
 	{
 		// Bob up and down.
-		transform.position = new Vector3(spawnPosition.x, spawnPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (spawnPosition.x + spawnPosition.y + spawnPosition.z + Time.time * BOB_RATE), spawnPosition.z);
+		transform.position = new Vector3(AnchorPosition.x, AnchorPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (AnchorPosition.x + AnchorPosition.y + AnchorPosition.z + Time.time * BOB_RATE), AnchorPosition.z);
 	
 		// Draw a line to the next orb as long as the next orb is the next in the series, otherwise the series has been broken at some point.
 		if (next != null && next.seriesIndex == seriesIndex + 1)
@@ -71,10 +72,12 @@ public class scrLightOrb : scrPoolable
 	{
 		Expired = false;
 
+		transform.localScale = Vector3.one;
+
 		float x = (float)initParams[0];
 		float z = (float)initParams[1];
-		spawnPosition = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
-		transform.position = new Vector3(spawnPosition.x, spawnPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (spawnPosition.x + spawnPosition.y + Time.time * BOB_RATE), spawnPosition.z);
+		SpawnPosition = AnchorPosition = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
+		transform.position = new Vector3(AnchorPosition.x, AnchorPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (AnchorPosition.x + AnchorPosition.y + Time.time * BOB_RATE), AnchorPosition.z);
 
 		seriesIndex = (int)initParams[2];
 		seriesLength = (int)initParams[3];

@@ -3,8 +3,8 @@ using System.Collections;
 
 public class scrPowerupGenerator : scrGenerator
 {
-	private const float DISTANCE_MAX = 100.0f;
-	private const float DISTANCE_MIN = 20.0f;
+	private const float DISTANCE_MAX = 20.0f;
+	private const float DISTANCE_MIN = 5.0f;
 	private const float DISTANCE_REDUCTION_PER_LIGHT = 1.0f;
 
 	private scrPool pool;
@@ -12,7 +12,7 @@ public class scrPowerupGenerator : scrGenerator
 	private void Start()
 	{
 		distanceRequired = DISTANCE_MAX;
-		distanceOffset = 10.0f;
+		distanceOffset = 2.0f;
 
 		pool = pools["Powerups"];
 	}
@@ -23,7 +23,7 @@ public class scrPowerupGenerator : scrGenerator
 	{
 		if (PlayerController.Instance.LightScore == 0) return;	// Do not generate if player has no light.
 
-		// Check for a free position.
+		// Find a random obstacle position.
 		Vector2 position;
 		if (GetFreePosition(out position))
 		{			

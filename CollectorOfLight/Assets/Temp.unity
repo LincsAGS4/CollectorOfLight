@@ -16,8 +16,8 @@ RenderSettings:
   m_FogColor: {r: 1, g: 1, b: 1, a: 1}
   m_FogMode: 1
   m_FogDensity: .00999999978
-  m_LinearFogStart: 350
-  m_LinearFogEnd: 400
+  m_LinearFogStart: 100
+  m_LinearFogEnd: 150
   m_AmbientLight: {r: .200000003, g: .200000003, b: .200000003, a: 1}
   m_SkyboxMaterial: {fileID: 2100000, guid: da976b1a4f7ebb949b0f71341e4f1821, type: 2}
   m_HaloStrength: .5
@@ -129,7 +129,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!1 &155430282
 GameObject:
   m_ObjectHideFlags: 0
@@ -249,7 +249,7 @@ Camera:
     height: 1
   near clip plane: .300000012
   far clip plane: 1000
-  field of view: 60
+  field of view: 70
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -269,11 +269,11 @@ Transform:
   m_PrefabParentObject: {fileID: 0}
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 352559582}
-  m_LocalRotation: {x: .087155737, y: 0, z: 0, w: .99619472}
-  m_LocalPosition: {x: 0, y: 2.5, z: -2.5}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalRotation: {x: .0174524058, y: 0, z: 0, w: .99984771}
+  m_LocalPosition: {x: 0, y: 1.25, z: -1.5}
+  m_LocalScale: {x: .25, y: .25030449, z: .49969551}
   m_Children: []
-  m_Father: {fileID: 862408497}
+  m_Father: {fileID: 0}
   m_RootOrder: 0
 --- !u!1 &393961500
 GameObject:
@@ -305,7 +305,7 @@ RectTransform:
   m_Children:
   - {fileID: 1739844391}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 7
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -455,7 +455,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 2
+  m_RootOrder: 3
 --- !u!114 &668163283
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -467,8 +467,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: acdac3f931b37f44b89a1a08fb407804, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  MaxHeight: 80
-  Uniformity: 200
+  MaxHeight: 20
+  Uniformity: 50
   Seed: 413
   Smooth: 0
   Player: {fileID: 1957961649}
@@ -556,6 +556,7 @@ GameObject:
   - 4: {fileID: 862408497}
   - 33: {fileID: 862408496}
   - 65: {fileID: 862408495}
+  - 65: {fileID: 862408498}
   - 23: {fileID: 862408494}
   m_Layer: 2
   m_Name: Cube
@@ -611,11 +612,22 @@ Transform:
   m_GameObject: {fileID: 862408493}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: .5, z: 0}
-  m_LocalScale: {x: .5, y: .5, z: 1}
-  m_Children:
-  - {fileID: 352559587}
+  m_LocalScale: {x: .25, y: .25, z: .5}
+  m_Children: []
   m_Father: {fileID: 1957961649}
   m_RootOrder: 0
+--- !u!65 &862408498
+BoxCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 862408493}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Size: {x: 1, y: 1, z: 1}
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &955570756
 GameObject:
   m_ObjectHideFlags: 0
@@ -688,7 +700,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 8
 --- !u!1 &1245005769
 GameObject:
   m_ObjectHideFlags: 0
@@ -744,7 +756,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 3
+  m_RootOrder: 4
 --- !u!1 &1476772271
 GameObject:
   m_ObjectHideFlags: 0
@@ -912,7 +924,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 4
+  m_RootOrder: 5
 --- !u!114 &1609270031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1023,6 +1035,8 @@ GameObject:
   - 114: {fileID: 1957961651}
   - 114: {fileID: 1957961650}
   - 114: {fileID: 1957961652}
+  - 54: {fileID: 1957961653}
+  - 114: {fileID: 1957961654}
   m_Layer: 2
   m_Name: Player
   m_TagString: Untagged
@@ -1042,7 +1056,7 @@ Transform:
   m_Children:
   - {fileID: 862408497}
   m_Father: {fileID: 0}
-  m_RootOrder: 0
+  m_RootOrder: 1
 --- !u!114 &1957961650
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1057,10 +1071,11 @@ MonoBehaviour:
   container: {fileID: 1957961648}
   model: {fileID: 862408493}
   inputController: {fileID: 1957961651}
-  currentSpeed: .25
+  currentSpeed: 20
   adjustedSpeed: 0
   standardSpeed: 0
   verticalAngle: 0
+  RagdollActive: 0
   rotationAngle: 0
   maxSpeed: 0
 --- !u!114 &1957961651
@@ -1089,6 +1104,34 @@ MonoBehaviour:
   inputController: {fileID: 1957961651}
   ellekSystem: {fileID: 1957961650}
   KinectSlider: {fileID: 1739844392}
+--- !u!54 &1957961653
+Rigidbody:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957961648}
+  serializedVersion: 2
+  m_Mass: 1
+  m_Drag: 0
+  m_AngularDrag: 0
+  m_UseGravity: 1
+  m_IsKinematic: 1
+  m_Interpolate: 0
+  m_Constraints: 0
+  m_CollisionDetection: 1
+--- !u!114 &1957961654
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957961648}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e0cf3b5a8f87bc449d2ec2e49dc80d2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Hearts: 3
+  ellekSystem: {fileID: 1957961650}
 --- !u!1 &1966479811
 GameObject:
   m_ObjectHideFlags: 0
@@ -1151,7 +1194,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 1
+  m_RootOrder: 2
 --- !u!1 &2069186629
 GameObject:
   m_ObjectHideFlags: 0

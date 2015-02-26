@@ -20,7 +20,7 @@ public sealed class scrLightGenerator : scrGenerator
 		Vector2 direction = new Vector2(x, z) - scrLandscape.Instance.GetCentre();
 		direction.Normalize();
 		
-		float bend = Random.Range (-0.2f, 0.2f); // Amount the direction bends per orb.
+		float bend = Random.Range (-0.1f, 0.1f); // Amount the direction bends per orb.
 		
 		// Make sure it is possible to produce the length of string required.
 		if (length > pool.Remaining)

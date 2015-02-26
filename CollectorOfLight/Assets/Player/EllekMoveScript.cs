@@ -16,7 +16,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
     *                            -t
     */
     
-    private float powerupDuration;  //The duration of a powerup's effects, used in the above formula.
+    private float derppowerupDuration;  //The duration of a powerup's effects, used in the above formula.
 
     public float rotationAngle;    //The angle the wheelchair is currently facing, and hence the angle the Ellek is turning towards
     private float maxGoalAngle;     //The maximum angle the Ellek can turn to, or even try to, currently set at 60 degrees / 1.047 radians
@@ -29,6 +29,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
     private float boostedSpeed;     //The speed the powerup changed the speed to (used for the exponential decay)
     private float lastBoostTime;    //The last time a speed powerup was collected
     private float timeSinceBoost;   //The time that has passed since the last speed powerup was collected
+
 
 	// Use this for initialization
 	void Start () 
@@ -44,7 +45,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
         boostedSpeed = 0.15f;
 
         //Using the formula I derived for the decayrate, using the assumed speedboost.
-        speedDecayRate = Mathf.Log((standardSpeed / boostedSpeed) / -powerupDuration);
+        //speedDecayRate = Mathf.Log((standardSpeed / boostedSpeed) / -powerupDuration);
 	}
 	
 	protected override void SpecificMovement() 
@@ -52,6 +53,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
 		//scale down the angle the player is turned at and use it to update the current angle
         float currentAngle = container.transform.eulerAngles.y + (rotationAngle * (turnScale) / (Mathf.PI / 180));
 		container.transform.eulerAngles = new Vector3 (0, currentAngle, 0);
+
 
         //If speed has been changed, adjust speed towards standard speed using exponential decay
         //Speed at time t == maxSpeed * e ^ (speedDecayRate * t)

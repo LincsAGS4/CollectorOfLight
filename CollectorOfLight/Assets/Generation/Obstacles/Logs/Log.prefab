@@ -11,7 +11,7 @@ GameObject:
   - 33: {fileID: 3396186}
   - 136: {fileID: 13696186}
   - 23: {fileID: 2396186}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Cylinder
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -29,7 +29,7 @@ GameObject:
   - 54: {fileID: 5462808}
   - 114: {fileID: 11480998}
   - 114: {fileID: 11474988}
-  m_Layer: 0
+  m_Layer: 8
   m_Name: Log
   m_TagString: Untagged
   m_Icon: {fileID: -1203168336, guid: 0000000000000000d000000000000000, type: 0}

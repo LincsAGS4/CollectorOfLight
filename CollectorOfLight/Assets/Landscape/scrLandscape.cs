@@ -7,13 +7,13 @@ public class scrLandscape : MonoBehaviour
 
 	// Handy consts for grid generation.
 	public const int GRID = 100;		// Verts per dimension. (1 + cells per dimension)
-	public const int CELL_SCALE = 10;							// Units per dimension of each cell.
+	public const int CELL_SCALE = 5;							// Units per dimension of each cell.
 	public const int GRID_SCALE = (GRID - 1) * CELL_SCALE;		// Units per dimension of grid.
 	public const float HALF_GRID_SCALE = GRID_SCALE * 0.5f;	// Half the grid scale, handy for removing tonnes of multiplication.
 	
 	// Same as above except used to make the mesh collider, which should be smaller than the visible grid.
 	public const int PHYS_GRID = 20;
-	public const int PHYS_CELL_SCALE = 10;
+	public const int PHYS_CELL_SCALE = 5;
 	public const int PHYS_GRID_SCALE = (PHYS_GRID - 1) * PHYS_CELL_SCALE;
 	public const float HALF_PHYS_GRID_SCALE = PHYS_GRID_SCALE * 0.5f;
 

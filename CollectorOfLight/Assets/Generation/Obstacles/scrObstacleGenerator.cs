@@ -3,6 +3,8 @@ using System.Collections;
 
 public class scrObstacleGenerator : scrGenerator
 {
+	public static scrObstacleGenerator Instance { get; private set; } 
+
 	private const float DISTANCE_MAX = 20.0f;
 	private const float DISTANCE_MIN = 2.0f;
 	private const float DISTANCE_REDUCTION_PER_LIGHT = 1.0f;
@@ -21,10 +23,29 @@ public class scrObstacleGenerator : scrGenerator
 
 	private void Start()
 	{
+		Instance = this;
+
 		distanceRequired = DISTANCE_MAX;
 		distanceOffset = 10.0f;
 
 		scrPlantCluster.InitStatic();
+	}
+
+	public bool GetPlantClusterInFrontOfPlayer(out scrPlantCluster plantCluster)
+	{
+		foreach (scrPoolable p in pools["Plant Clusters"].GetAllActive())
+		{
+			Vector2 position = new Vector2(p.transform.position.x, p.transform.position.z);
+			if(Vector2.Distance(position, scrLandscape.Instance.GetCentre()) >= scrLandscape.PHYS_GRID_SCALE &&	// Check that the position is further than a minimum distance.
+			   Vector2.Angle (position - scrLandscape.Instance.GetCentre(), PlayerController.Instance.Velocity2D) < 45 &&  // Check that the position is within a 45 degree arc from the direction.
+			   !Physics.CheckSphere(p.transform.position, SPACING, 1 << LayerMask.NameToLayer("Powerup")))	// Check that the position is not occupied.
+			{
+				plantCluster = (scrPlantCluster)p;
+				return true;
+			}
+		}
+		plantCluster = null;
+		return false;
 	}
 
 	// ---- scrGenerator ----

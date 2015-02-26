@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public sealed class scrPool : MonoBehaviour
 {
@@ -49,6 +50,17 @@ public sealed class scrPool : MonoBehaviour
 				++Remaining;
 			}
 		}
+	}
+
+	public List<scrPoolable> GetAllActive()
+	{
+		List<scrPoolable> active = new List<scrPoolable>();
+		for (int i = 0; i < Capacity; ++i)
+		{
+			if (pool[i].gameObject.activeSelf)
+				active.Add(pool[i]);
+		}
+		return active;
 	}
 
 	public scrPoolable Create(params object[] initParams)

@@ -12,6 +12,7 @@ public class scrEllekStatus : MonoBehaviour
 	float speedPowerupTimer = 0.0f;
 	
 	// Ghost powerup.
+	float ghostPowerupRespawnDuration = 3.0f;
 	bool ghostPowerupActive = false;
 	float ghostPowerupTimer = 0.0f;
 	
@@ -116,6 +117,8 @@ public class scrEllekStatus : MonoBehaviour
 				--Hearts;
 				Debug.Log (Hearts);
 				ellekSystem.Ragdollize();
+				ghostPowerupActive = true;
+				ghostPowerupTimer = ghostPowerupRespawnDuration;
 
 				if (Hearts == 0)
 				{

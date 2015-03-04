@@ -51,8 +51,8 @@ public class EllekMoveScript : MobileObstacleMoveScript
 	protected override void SpecificMovement() 
     {
 		//scale down the angle the player is turned at and use it to update the current angle
-        float currentAngle = container.transform.eulerAngles.y + (rotationAngle * (turnScale) / (Mathf.PI / 180));
-		container.transform.eulerAngles = new Vector3 (0, currentAngle, 0);
+        float currentAngle = transform.eulerAngles.y + (rotationAngle * (turnScale) / (Mathf.PI / 180));
+		transform.eulerAngles = new Vector3 (0, currentAngle, 0);
 
 
         //If speed has been changed, adjust speed towards standard speed using exponential decay
@@ -99,4 +99,9 @@ public class EllekMoveScript : MobileObstacleMoveScript
         else
         { return false; }
     }
+
+	public override void Init (params object[] initParams)
+	{
+		throw new System.NotImplementedException ();
+	}
 }

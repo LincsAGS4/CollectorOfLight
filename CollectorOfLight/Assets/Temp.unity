@@ -74,62 +74,6 @@ NavMeshSettings:
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
   m_NavMesh: {fileID: 0}
---- !u!1 &149607096
-GameObject:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  serializedVersion: 4
-  m_Component:
-  - 4: {fileID: 149607099}
-  - 114: {fileID: 149607098}
-  - 114: {fileID: 149607097}
-  m_Layer: 0
-  m_Name: PowerupGenerator
-  m_TagString: Untagged
-  m_Icon: {fileID: -195793285, guid: 0000000000000000d000000000000000, type: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &149607097
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 149607096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Identifier: Powerups
-  Capacity: 100
-  Prefabs:
-  - {fileID: 164226, guid: c538c44083b0e75418a0aa11bb228a2d, type: 2}
---- !u!114 &149607098
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 149607096}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0d4ea659014c78043a606f3d5dd1ac7c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Generating: 1
---- !u!4 &149607099
-Transform:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 149607096}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3, y: -1, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 6
 --- !u!1 &155430282
 GameObject:
   m_ObjectHideFlags: 0
@@ -414,7 +358,7 @@ RectTransform:
   m_Children:
   - {fileID: 1739844391}
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 6
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -809,7 +753,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 8
+  m_RootOrder: 7
 --- !u!1 &1245005769
 GameObject:
   m_ObjectHideFlags: 0
@@ -1065,8 +1009,8 @@ MonoBehaviour:
   Identifier: Trees and Shrubs
   Capacity: 60
   Prefabs:
-  - {fileID: 127298, guid: 34b0e07b63a578e479fca6c45fb5dc49, type: 2}
-  - {fileID: 144480, guid: 6fe93e7df5d938648a06cab4699ffad6, type: 2}
+  - {fileID: 0}
+  - {fileID: 0}
 --- !u!114 &1609270028
 MonoBehaviour:
   m_ObjectHideFlags: 0

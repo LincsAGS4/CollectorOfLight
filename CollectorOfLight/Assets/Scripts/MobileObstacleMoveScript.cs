@@ -22,7 +22,8 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 	// Use this for initialization
 	void Awake () 
     {
-		standardSpeed = currentSpeed;
+		if (standardSpeed == 0)
+			standardSpeed = currentSpeed;
         
 	}
 	

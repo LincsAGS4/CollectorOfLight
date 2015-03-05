@@ -3,6 +3,8 @@ using System.Collections;
 
 public class scrAIPiggem : MobileObstacleMoveScript
 {
+	float turnDelay = 3.0f;
+	float turnTimer = 0.0f;
 	float targetAngle;
 
 	void Start ()
@@ -29,8 +31,16 @@ public class scrAIPiggem : MobileObstacleMoveScript
 	
 	protected override void SpecificMovement ()
 	{
-		transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, targetAngle, 0), 10 * Time.deltaTime);
-		
+		turnTimer += Time.deltaTime;
+		if (turnTimer >= turnDelay)
+		{
+			turnTimer = 0.0f;
+			
+			// Set the angle to turn to.
+			targetAngle = transform.eulerAngles.y + Random.Range (-180, 180);
+		}
+
+		transform.rotation = Quaternion.RotateTowards(transform.rotation, Quaternion.Euler(0, targetAngle, 0), 10 * Time.deltaTime);	
 	}
 
 	public override void Init (params object[] initParams)

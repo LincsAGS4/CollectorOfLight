@@ -85,7 +85,7 @@ public class scrLargeTree : scrPoolable
                 g.transform.position = gameObject.transform.position;
                 g.transform.up = gameObject.transform.up;
 				g.transform.position += new Vector3(spawnBounds, capsuleHeight, spawnBounds);
-				g.rigidbody.isKinematic = true;
+				g.GetComponent<Rigidbody>().isKinematic = true;
             }
         }
 
@@ -101,8 +101,8 @@ public class scrLargeTree : scrPoolable
 		{
 			foreach(GameObject fruit in attachedFruit)
 			{
-				fruit.rigidbody.isKinematic = false;
-				fruit.rigidbody.AddForce(fruit.transform.up);
+				fruit.GetComponent<Rigidbody>().isKinematic = false;
+				fruit.GetComponent<Rigidbody>().AddForce(fruit.transform.up);
 			}
 
 			fruitDrop = true;

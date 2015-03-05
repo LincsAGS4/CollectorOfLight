@@ -30,4 +30,5 @@ public class scrLog : scrPoolable
 		float scale = Random.Range (scaleMin, scaleMax);
 		transform.localScale = new Vector3(scale, scale, scale);
 	}
+
 }

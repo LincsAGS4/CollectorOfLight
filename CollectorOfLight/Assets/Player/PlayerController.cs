@@ -49,8 +49,8 @@ public class PlayerController : MonoBehaviour
 
 		if (!ellekSystem.RagdollActive)
 		{
-			Vector3 p = transform.position - transform.forward * 2.5f;
-			Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, new Vector3(p.x, scrLandscape.Instance.GetHeightFromNoise(p.x, p.z) + 2.0f, p.z), 0.8f);
+			Vector3 p = transform.position - transform.forward * 3.0f;
+			Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, new Vector3(p.x, scrLandscape.Instance.GetHeightFromNoise(p.x, p.z) + 3.0f, p.z), 0.8f);
 			Camera.main.transform.LookAt(transform.position + transform.forward * 30.0f);
 		}
 		else

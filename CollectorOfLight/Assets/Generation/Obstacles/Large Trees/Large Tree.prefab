@@ -147,6 +147,7 @@ MonoBehaviour:
   fruitMax: 5
   fruitPrefabs:
   - {fileID: 156558, guid: 71505827a27457142b4a12fbf4efcb62, type: 2}
+  - {fileID: 134566, guid: 36529df72274cd24fa511e4c49804c9d, type: 2}
 --- !u!136 &13660302
 CapsuleCollider:
   m_ObjectHideFlags: 1

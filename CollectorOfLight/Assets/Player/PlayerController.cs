@@ -19,6 +19,8 @@ public class PlayerController : MonoBehaviour
 
 	public Slider KinectSlider;
 
+
+
 	void Awake()
 	{
 		Instance = this;

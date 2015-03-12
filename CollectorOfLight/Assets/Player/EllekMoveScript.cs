@@ -7,6 +7,11 @@ public class EllekMoveScript : MobileObstacleMoveScript
 
     private float speedDecayRate;    //The lambda in the exponential decay equation (may need tweaking, hence public)
 
+	private bool jumping = false;
+	private bool moveUp;
+	private Vector3 startJumpPosition, lastJumpPosition;
+	private float jumpHeight;
+
     /*Assuming we want the powerups to last an amount of time, t:
     *
     *                     ( standardSpeed )
@@ -47,7 +52,17 @@ public class EllekMoveScript : MobileObstacleMoveScript
         //Using the formula I derived for the decayrate, using the assumed speedboost.
         //speedDecayRate = Mathf.Log((standardSpeed / boostedSpeed) / -powerupDuration);
 	}
-	
+
+	void Update()
+	{
+		base.Update ();
+
+		if(Input.GetKeyDown(KeyCode.J))
+		{
+			Jump(5);
+		}
+	}
+
 	protected override void SpecificMovement() 
     {
 		//scale down the angle the player is turned at and use it to update the current angle
@@ -99,6 +114,48 @@ public class EllekMoveScript : MobileObstacleMoveScript
         else
         { return false; }
     }
+
+	//void Update()
+	//{
+		//i//f (jumping) {
+			//Jump(2);
+		//}
+	//}
+
+	protected override void NonAttachedMovement ()
+	{
+		/*if (transform.position.y > startJumpPosition.y + jumpHeight) 
+		{
+			moveUp = false;
+		}
+
+		if (moveUp) 
+		{
+			transform.position += new Vector3(0,0.1f,0);
+		}
+		else
+		{
+			transform.position += new Vector3(0,-0.1f,0);
+		}
+		lastJumpPosition = transform.position;*/
+		if (GetComponentInChildren<BoxCollider>().collider.bounds.max.y <= scrLandscape.Instance.GetHeightFromNoise (transform.position.x, transform.position.z)) {
+			MoveModelToLandscape = true;
+		}
+			
+	}
+
+
+
+	public void Jump(float height)
+	{
+		//MoveModelToLandscape = false;
+		//jumpHeight = height;
+		//moveUp = true;
+		rigidbody.isKinematic = false;
+		//rigidbody.AddForce (new Vector3 (0, 2, 0));
+		//startJumpPosition = gameObject.transform.position;
+		//lastJumpPosition = startJumpPosition;
+	}
 
 	public override void Init (params object[] initParams)
 	{

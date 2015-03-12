@@ -46,9 +46,10 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 				model.transform.position = modelPos;
 
 			}
-
+			MoveModelToLandscape = true;
 			return;
 		}
+
 
         SpecificMovement();
 
@@ -61,53 +62,55 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 		// Move the rigidbody forwards.
 		rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
 		
-		if (MoveModelToLandscape)
-		{
+		if (MoveModelToLandscape) {
 			// Set the y of the model.
-			model.transform.position = new Vector3(model.transform.position.x, scrLandscape.Instance.GetHeightFromNoise(rigidbody.position.x, rigidbody.position.z), model.transform.position.z);
+			model.transform.position = new Vector3 (model.transform.position.x, scrLandscape.Instance.GetHeightFromNoise (rigidbody.position.x, rigidbody.position.z), model.transform.position.z);
 
 			// Reset the model's rotation.
 			model.transform.rotation = Quaternion.identity;
 
 			// Find the height at each corner of the model.
-			Vector3 frontLeft = new Vector3(model.collider.bounds.min.x, 0, model.collider.bounds.max.z);
-			frontLeft.y = scrLandscape.Instance.GetHeightFromNoise(frontLeft.x, frontLeft.z);
+			Vector3 frontLeft = new Vector3 (model.collider.bounds.min.x, 0, model.collider.bounds.max.z);
+			frontLeft.y = scrLandscape.Instance.GetHeightFromNoise (frontLeft.x, frontLeft.z);
 			
-			Vector3 frontRight = new Vector3(model.collider.bounds.max.x, 0, model.collider.bounds.max.z);
-			frontRight.y = scrLandscape.Instance.GetHeightFromNoise(frontRight.x, frontRight.z);
+			Vector3 frontRight = new Vector3 (model.collider.bounds.max.x, 0, model.collider.bounds.max.z);
+			frontRight.y = scrLandscape.Instance.GetHeightFromNoise (frontRight.x, frontRight.z);
 			
-			Vector3 backLeft = new Vector3(model.collider.bounds.min.x, 0, model.collider.bounds.min.z);
-			backLeft.y = scrLandscape.Instance.GetHeightFromNoise(backLeft.x, backLeft.z);
+			Vector3 backLeft = new Vector3 (model.collider.bounds.min.x, 0, model.collider.bounds.min.z);
+			backLeft.y = scrLandscape.Instance.GetHeightFromNoise (backLeft.x, backLeft.z);
 			
-			Vector3 backRight = new Vector3(model.collider.bounds.max.x, 0, model.collider.bounds.min.z);
-			backRight.y = scrLandscape.Instance.GetHeightFromNoise(backRight.x, backRight.z);
+			Vector3 backRight = new Vector3 (model.collider.bounds.max.x, 0, model.collider.bounds.min.z);
+			backRight.y = scrLandscape.Instance.GetHeightFromNoise (backRight.x, backRight.z);
 			
 			// Get the average normal.
 			float precision = scrLandscape.CELL_SCALE * 0.5f;
-			model.transform.up = (scrLandscape.Instance.GetNormalFromNoise(frontLeft.x, frontLeft.z, precision) +
-			                      scrLandscape.Instance.GetNormalFromNoise(frontRight.x, frontRight.z, precision) +
-			                      scrLandscape.Instance.GetNormalFromNoise(backLeft.x, backLeft.z, precision) +
-			                      scrLandscape.Instance.GetNormalFromNoise(backRight.x, backRight.z, precision)).normalized;
+			model.transform.up = (scrLandscape.Instance.GetNormalFromNoise (frontLeft.x, frontLeft.z, precision) +
+				scrLandscape.Instance.GetNormalFromNoise (frontRight.x, frontRight.z, precision) +
+				scrLandscape.Instance.GetNormalFromNoise (backLeft.x, backLeft.z, precision) +
+				scrLandscape.Instance.GetNormalFromNoise (backRight.x, backRight.z, precision)).normalized;
 
 
 			// Make the model point in the same direction as the main object.
 			model.transform.Rotate (0, transform.eulerAngles.y, 0, Space.Self);
 			
 			#region Debug Rays
-			Debug.DrawRay(frontLeft, Vector3.up);
-			Debug.DrawRay(frontLeft, scrLandscape.Instance.GetNormalFromNoise(frontLeft.x, frontLeft.z, precision));
+			Debug.DrawRay (frontLeft, Vector3.up);
+			Debug.DrawRay (frontLeft, scrLandscape.Instance.GetNormalFromNoise (frontLeft.x, frontLeft.z, precision));
 			
-			Debug.DrawRay(frontRight, Vector3.up);
-			Debug.DrawRay(frontRight, scrLandscape.Instance.GetNormalFromNoise(frontRight.x, frontRight.z, precision));
+			Debug.DrawRay (frontRight, Vector3.up);
+			Debug.DrawRay (frontRight, scrLandscape.Instance.GetNormalFromNoise (frontRight.x, frontRight.z, precision));
 			
-			Debug.DrawRay(backLeft, Vector3.up);
-			Debug.DrawRay(backLeft, scrLandscape.Instance.GetNormalFromNoise(backLeft.x, backLeft.z, precision));
+			Debug.DrawRay (backLeft, Vector3.up);
+			Debug.DrawRay (backLeft, scrLandscape.Instance.GetNormalFromNoise (backLeft.x, backLeft.z, precision));
 			
-			Debug.DrawRay(backRight, Vector3.up);
-			Debug.DrawRay(backRight, scrLandscape.Instance.GetNormalFromNoise(backRight.x, backRight.z, precision));
+			Debug.DrawRay (backRight, Vector3.up);
+			Debug.DrawRay (backRight, scrLandscape.Instance.GetNormalFromNoise (backRight.x, backRight.z, precision));
 			
-			Debug.DrawLine(model.transform.position, model.transform.position + model.transform.up * 100);
+			Debug.DrawLine (model.transform.position, model.transform.position + model.transform.up * 100);
 			#endregion
+		}
+		else {
+			NonAttachedMovement();
 		}
 	}
 
@@ -128,4 +131,6 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 
     //to be overwritten by an inheriting class with the specific adjustments to direction and speed BEFORE adjustments
     protected abstract void SpecificMovement();
+
+	protected virtual void NonAttachedMovement() {}
 }

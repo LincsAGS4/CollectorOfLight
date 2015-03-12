@@ -13,11 +13,12 @@ public class scrLightOrb : scrPoolable
 
 	public Vector3 SpawnPosition { get; private set; }
 	public Vector3 AnchorPosition;
-	private LineRenderer line;
+	private LineRenderer line, subline;
 
 	void Awake ()
 	{
 		line = GetComponent<LineRenderer>();
+		subline = transform.Find ("Orb").GetComponent<LineRenderer>();
 	}
 
 	protected override void Update ()
@@ -30,6 +31,9 @@ public class scrLightOrb : scrPoolable
 		{
 			line.SetPosition(0, transform.position);
 			line.SetPosition(1, next.transform.position);
+
+			subline.SetPosition(0, transform.position);
+			subline.SetPosition(1, next.transform.position);
 		}
 
 		base.Update();
@@ -62,6 +66,7 @@ public class scrLightOrb : scrPoolable
 			previous = link;
 			link.next = this;
 			link.line.SetVertexCount(2);
+			link.subline.SetVertexCount(2);
 		}
 	}
 
@@ -86,6 +91,7 @@ public class scrLightOrb : scrPoolable
 		previous = null;
 
 		line.SetVertexCount(0);
+		subline.SetVertexCount(0);
 	}
 
 	protected override void ExpireWhenOutOfBounds()

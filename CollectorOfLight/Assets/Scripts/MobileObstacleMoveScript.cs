@@ -52,48 +52,64 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 
         SpecificMovement();
 
-        Vector3 speedAdjustNormal = scrLandscape.Instance.GetNormal(this.transform.position.x, this.transform.position.z);
+		adjustedSpeed = currentSpeed * (1 + Vector3.Dot(transform.forward, model.transform.up) * 0.5f);
 
-        //vertical angle is 90 degrees minus the vertical component of the normals' angle
-		/*float*/ verticalAngle = (Mathf.PI/2) - (Mathf.Asin(speedAdjustNormal.y / speedAdjustNormal.magnitude));
-               
-        //create an adjustedSpeed based on the angle of the normal
-		if (verticalAngle >= 0) 
-		{ adjustedSpeed = currentSpeed * (1 + (verticalAngle/60)); }
-		else if (verticalAngle < 0) 
-		{ adjustedSpeed = currentSpeed / (1 + (verticalAngle/60)); }
+    }
 
+	void FixedUpdate()
+	{
+		// Move the rigidbody forwards.
+		rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
+		
 		if (MoveModelToLandscape)
 		{
+			// Set the y of the model.
+			model.transform.position = new Vector3(model.transform.position.x, scrLandscape.Instance.GetHeightFromNoise(rigidbody.position.x, rigidbody.position.z), model.transform.position.z);
 
-			//Move object along its current facing
-	        //Convert move speed to translation, translate Ellek along xz directions by its speed
-			Vector3 newthisPos = this.transform.position;
+			// Reset the model's rotation.
+			model.transform.rotation = Quaternion.identity;
 
-			newthisPos += transform.forward * adjustedSpeed * Time.deltaTime;
+			// Find the height at each corner of the model.
+			Vector3 frontLeft = new Vector3(model.collider.bounds.min.x, 0, model.collider.bounds.max.z);
+			frontLeft.y = scrLandscape.Instance.GetHeightFromNoise(frontLeft.x, frontLeft.z);
+			
+			Vector3 frontRight = new Vector3(model.collider.bounds.max.x, 0, model.collider.bounds.max.z);
+			frontRight.y = scrLandscape.Instance.GetHeightFromNoise(frontRight.x, frontRight.z);
+			
+			Vector3 backLeft = new Vector3(model.collider.bounds.min.x, 0, model.collider.bounds.min.z);
+			backLeft.y = scrLandscape.Instance.GetHeightFromNoise(backLeft.x, backLeft.z);
+			
+			Vector3 backRight = new Vector3(model.collider.bounds.max.x, 0, model.collider.bounds.min.z);
+			backRight.y = scrLandscape.Instance.GetHeightFromNoise(backRight.x, backRight.z);
+			
+			// Get the average normal.
+			float precision = scrLandscape.CELL_SCALE * 0.5f;
+			model.transform.up = (scrLandscape.Instance.GetNormalFromNoise(frontLeft.x, frontLeft.z, precision) +
+			                      scrLandscape.Instance.GetNormalFromNoise(frontRight.x, frontRight.z, precision) +
+			                      scrLandscape.Instance.GetNormalFromNoise(backLeft.x, backLeft.z, precision) +
+			                      scrLandscape.Instance.GetNormalFromNoise(backRight.x, backRight.z, precision)).normalized;
 
-			Vector3 newModelPos = this.transform.position;
-	        //update the new position with the y position from terrain
-			newModelPos.y = scrLandscape.Instance.GetHeightFromNoise (newthisPos.x, newthisPos.z);// + model.transform.localScale.y * 0.5f;
 
-	        //The position won't be changed from here on out, so it can now be pushed to the this
-			rigidbody.MovePosition(newthisPos);
-			model.transform.position = newModelPos;
-
-	        #region RotatingToNormal
-	        //raycast at the new position
-			Vector3 up = scrLandscape.Instance.GetNormalFromNoise(this.transform.position.x, this.transform.position.z, 1.0f);
-			//model.transform.up = Vector3.Lerp (model.transform.up, up, 0.5f);
-			//model.transform.forward = transform.forward;
-
-			Quaternion prevRot = model.transform.rotation;
-			model.transform.LookAt(model.transform.position + transform.forward, up);
-			model.transform.rotation = Quaternion.Lerp (prevRot, model.transform.rotation, 0.8f);
-			model.transform.position += model.transform.up * model.transform.localScale.y * 0.5f;
-	        #endregion
-
+			// Make the model point in the same direction as the main object.
+			model.transform.Rotate (0, transform.eulerAngles.y, 0, Space.Self);
+			
+			#region Debug Rays
+			Debug.DrawRay(frontLeft, Vector3.up);
+			Debug.DrawRay(frontLeft, scrLandscape.Instance.GetNormalFromNoise(frontLeft.x, frontLeft.z, precision));
+			
+			Debug.DrawRay(frontRight, Vector3.up);
+			Debug.DrawRay(frontRight, scrLandscape.Instance.GetNormalFromNoise(frontRight.x, frontRight.z, precision));
+			
+			Debug.DrawRay(backLeft, Vector3.up);
+			Debug.DrawRay(backLeft, scrLandscape.Instance.GetNormalFromNoise(backLeft.x, backLeft.z, precision));
+			
+			Debug.DrawRay(backRight, Vector3.up);
+			Debug.DrawRay(backRight, scrLandscape.Instance.GetNormalFromNoise(backRight.x, backRight.z, precision));
+			
+			Debug.DrawLine(model.transform.position, model.transform.position + model.transform.up * 100);
+			#endregion
 		}
-    }
+	}
 
 	public void Ragdollize()
 	{

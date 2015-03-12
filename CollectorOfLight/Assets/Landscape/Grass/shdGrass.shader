@@ -10,7 +10,7 @@
 	}
 	SubShader
 	{
-		Tags { "Queue"="Transparent" "RenderType"="Transparent" "IgnoreProjector"="True" }
+		Tags { "Queue"="Geometry" "RenderType"="Opaque" }
 		//ZWrite Off
 		Blend SrcAlpha OneMinusSrcAlpha
 		
@@ -23,10 +23,14 @@
 		float _Height;
 		float _Part;
 		
+		float2 _PlayerX;
+		float2 _PlayerZ;
+		
 		struct Input
 		{
 			float2 uv_MainTex;
 			float3 worldPos;
+			float3 worldNormal;
 		};
 		
 		void vert(inout appdata_full v)
@@ -45,10 +49,16 @@
 			// Check that the colour isn't transparent.
 			if (colour.a != 0)
 			{
+				// Set the colour based on the part.
 				colour.r = lerp(_BottomColour.r, _TopColour.r, _Part);
 				colour.g = lerp(_BottomColour.g, _TopColour.g, _Part);
 				colour.b = lerp(_BottomColour.b, _TopColour.b, _Part);
 				colour.a = lerp(_BottomColour.a, _TopColour.a, _Part);
+				
+				// Add a random colouration.
+				float random = sin(i.worldNormal.x * i.worldNormal.z + i.worldNormal.y * i.worldPos.y) + tan(i.worldPos.y + i.worldNormal.z + i.worldNormal.y + i.worldNormal.x);
+				colour.r += 0.2 * abs(sin(0.05 * i.worldPos.y * (i.worldNormal.x + i.worldNormal.y + i.worldNormal.z)));
+				
 				o.Albedo = colour.rgb;
 			}
 			else

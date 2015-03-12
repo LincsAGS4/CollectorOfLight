@@ -104,17 +104,29 @@ public class scrLandscape : MonoBehaviour
 	}
 
 	// Gets the normal from the noise information. Lower precision value = more precise, can't think of a better word for the value...
-	public Vector3 GetNormalFromNoise(float x, float z, float precision)
+	public Vector3 GetNormalFromNoise(float x, float z, float precision, bool quick = false)
 	{
 		Vector3 position = new Vector3(x, GetHeight (x, z), z);
 
-		Vector2 dirX = new Vector2(x + precision, GetHeight(x + precision, z)) - new Vector2(x - precision, GetHeight(x - precision, z));
-		Vector2 dirZ = new Vector2(GetHeight (x, z + precision), z + precision) - new Vector2(GetHeight (x, z - precision), z - precision); // .y = z, .x = y
+		/* Get the direction between the centre and four points like this:
+		 * 					 .
+		 * 				   .-¦-.
+		 * 					 .
+		 * Then find the normal by taking their cross product.
+		 */
 
-		Vector3 normalX = new Vector3(-dirX.y, Mathf.Abs (dirX.x), 0);
-		Vector3 normalZ = new Vector3(0, Mathf.Abs (dirZ.y), -dirZ.x);	// .y = z, .x = y
+		Vector3 a = new Vector3(position.x - precision, GetHeight (position.x - precision, position.z), position.z);
+		Vector3 b = new Vector3(position.x + precision, GetHeight (position.x + precision, position.z), position.z);
+		Vector3 c = new Vector3(position.x, GetHeight (position.x, position.z - precision), position.z - precision);
+		Vector3 d = new Vector3(position.x, GetHeight (position.x, position.z + precision), position.z + precision);
 
-		return (normalX + normalZ) / 2.0f;
+		if (quick)
+			return -Vector3.Cross(b - a, d - c).normalized;
+
+		return -(Vector3.Cross(position - a, position - c) +
+		        Vector3.Cross(position - a, d - position) +
+		        Vector3.Cross(b - position, position - c) + 
+		        Vector3.Cross(b - position, d - position)).normalized;
 	}
 
 	public bool Contains(Vector3 position)

@@ -47,17 +47,6 @@ public class PlayerController : MonoBehaviour
 		Speed2D = ellekSystem.adjustedSpeed;
 		Velocity2D = new Vector2(transform.forward.x, transform.forward.z) * Speed2D;
 
-		if (!ellekSystem.RagdollActive)
-		{
-			Vector3 p = transform.position - transform.forward * 3.0f;
-			Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, new Vector3(p.x, scrLandscape.Instance.GetHeightFromNoise(p.x, p.z) + 3.0f, p.z), 0.8f);
-			Camera.main.transform.LookAt(transform.position + transform.forward * 30.0f);
-		}
-		else
-		{
-			Camera.main.transform.LookAt(transform.position);
-		}
-
 		// Get the input info
 		SeatedInfo inputInfo = this.inputController.InputInfo;
 		if (inputInfo == null)
@@ -75,8 +64,20 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Turning did not register; player rotated too far.");
 		}
-		
-		return;
+	}
+
+	void FixedUpdate()
+	{
+		if (!ellekSystem.RagdollActive)
+		{
+			Vector3 p = transform.position - transform.forward * 3.0f;
+			Camera.main.transform.position = Vector3.Lerp (Camera.main.transform.position, new Vector3(p.x, scrLandscape.Instance.GetHeightFromNoise(p.x, p.z) + 3.0f, p.z), 0.8f);
+			Camera.main.transform.LookAt(transform.position + transform.forward * 30.0f);
+		}
+		else
+		{
+			Camera.main.transform.LookAt(transform.position);
+		}
 	}
 
 	void OnTriggerEnter(Collider other)

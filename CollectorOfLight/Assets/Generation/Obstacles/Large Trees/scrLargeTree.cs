@@ -11,7 +11,9 @@ public class scrLargeTree : scrPoolable
 	bool fruitDrop = false;
 
     public List<GameObject> fruitPrefabs;
+    public List<GameObject> fruitSpawnPoints = new List<GameObject>();
     List<GameObject> attachedFruit = new List<GameObject>();
+    
 	// ---- scrPoolable ----
 	
 	/// <param name="initParams">float x, float z</param>
@@ -44,48 +46,22 @@ public class scrLargeTree : scrPoolable
         {
             //Spawn in new fruit on the object
             float fruitCount = Random.Range(fruitMin, fruitMax);
-			Debug.Log(capsuleHeight);
             for (int i = 0; i < fruitCount; i++)
             {
-
-				float spawnDirection = Random.Range(-1f, 1f);
-				if(spawnDirection < 0)
-				{
-					spawnBounds = capsuleRadius + Random.Range(0f, 3f);
-				}
-				else
-				{
-					spawnBounds = -(capsuleRadius + Random.Range(0f, 3f));
-				}
-                GameObject fruit = Instantiate(fruitPrefabs[0]) as GameObject;
+                GameObject fruit = Instantiate(fruitPrefabs[Random.Range(0,fruitPrefabs.Count)]) as GameObject;
                 fruit.transform.parent = gameObject.transform;
                 fruit.transform.position = gameObject.transform.position;
                 fruit.transform.up = gameObject.transform.up;
-
-
-				fruit.transform.position += new Vector3(spawnBounds, capsuleHeight, spawnBounds);
+                fruit.transform.localPosition = fruitSpawnPoints[i].transform.localPosition;
                 attachedFruit.Add(fruit);
-
             }
         }
         else
-		{	
+		{
             //Reset the fruit to start positions
-            foreach (GameObject g in attachedFruit)
+            for (int i = 0; i < attachedFruit.Count; i++)
             {
-				float spawnDirection = Random.Range(-1f, 1f);
-				if(spawnDirection < 0)
-				{
-					spawnBounds = capsuleRadius + 2 + Random.Range(0f, 3f);
-				}
-				else
-				{
-					spawnBounds = -(capsuleRadius + 2 + Random.Range(0f, 3f));
-				}
-                g.transform.position = gameObject.transform.position;
-                g.transform.up = gameObject.transform.up;
-				g.transform.position += new Vector3(spawnBounds, capsuleHeight, spawnBounds);
-				g.rigidbody.isKinematic = true;
+                attachedFruit[i].transform.localPosition = fruitSpawnPoints[i].transform.localPosition;
             }
         }
 

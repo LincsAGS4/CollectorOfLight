@@ -91,7 +91,7 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 
 
 			// Make the model point in the same direction as the main object.
-			model.transform.Rotate (0, transform.eulerAngles.y, 0, Space.Self);
+			model.transform.Rotate (0, transform.eulerAngles.y-90, 0, Space.Self);
 			
 			#region Debug Rays
 			Debug.DrawRay (frontLeft, Vector3.up);

@@ -131,9 +131,9 @@ public class EllekMoveScript : MobileObstacleMoveScript
 			transform.position += new Vector3(0,-0.1f,0);
 		}
 		lastJumpPosition = transform.position;*/
-		/*if (GetComponentInChildren<BoxCollider>().collider.bounds.max.y <= scrLandscape.Instance.GetHeightFromNoise (transform.position.x, transform.position.z)) {
+		if (GetComponentInChildren<BoxCollider>().collider.bounds.max.y <= scrLandscape.Instance.GetHeightFromNoise (transform.position.x, transform.position.z) + 0.5f) {
 			MoveModelToLandscape = true;
-		}*/
+		}
 			
 	}
 
@@ -141,7 +141,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
 
 	public void Jump(float height)
 	{
-		//MoveModelToLandscape = false;
+		MoveModelToLandscape = false;
 		//jumpHeight = height;
 		//moveUp = true;
 		//rigidbody.isKinematic = false;

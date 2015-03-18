@@ -26,12 +26,10 @@ public class scrEllekStatus : MonoBehaviour
 	public static int LightPowerupReward = 20;
 	#endregion
 
-	public const int HEARTS_MAX = 8;
-	public static int HeartCapacity = 3;
-	public int Hearts = 3;
-	
 	float originalFOV;
 	public EllekMoveScript ellekSystem;
+
+	public GameObject FakeOrbPrefab;
 
 	// Use this for initialization
 	void Start ()
@@ -114,17 +112,34 @@ public class scrEllekStatus : MonoBehaviour
 			}
 			else if (!ghostPowerupActive && !other.GetComponent<scrLightOrb>())
 			{
-				--Hearts;
-				Debug.Log (Hearts);
+
 				ellekSystem.Ragdollize();
 				ghostPowerupActive = true;
 				ghostPowerupTimer = ghostPowerupRespawnDuration;
 
-				if (Hearts == 0)
-				{
-					ellekSystem.enabled = false;
-					Invoke ("EndTheGame", 5.0f);
-				}
+				StartCoroutine(ReleaseOrbs());
+			}
+		}
+	}
+
+	IEnumerator ReleaseOrbs()
+	{
+		if (PlayerController.Instance.LightScore != 0)
+		{
+
+			// The light score should be halved.
+			int nextLightScore = PlayerController.Instance.LightScore / 2;
+			int lightToRelease = PlayerController.Instance.LightScore - nextLightScore;
+
+			// Fling out light orbs in a circle.
+			for (int i = 0; i < lightToRelease; ++i)
+			{
+				float angle = Mathf.Sin ((float)i / lightToRelease * Mathf.PI * 2);
+				GameObject orb = ((GameObject)Instantiate(FakeOrbPrefab, ellekSystem.model.transform.position, Quaternion.identity));
+				orb.rigidbody.velocity = new Vector3(Mathf.Sin(angle), 0.5f, Mathf.Cos (angle)) * 10.0f;
+				orb.rigidbody.velocity += rigidbody.velocity;
+				--PlayerController.Instance.LightScore;
+				yield return new WaitForSeconds(1.0f / lightToRelease);
 			}
 		}
 	}

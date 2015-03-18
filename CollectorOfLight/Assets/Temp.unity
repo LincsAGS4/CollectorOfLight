@@ -1027,6 +1027,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 50c31549a26d91b4ea222ddbc1b02141, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnExpire: 0
   model: {fileID: 862408493}
   currentSpeed: 1
   adjustedSpeed: 0
@@ -1088,8 +1089,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0cf3b5a8f87bc449d2ec2e49dc80d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Hearts: 3
   ellekSystem: {fileID: 1957961650}
+  FakeOrbPrefab: {fileID: 152118, guid: 9d64694c92cfa69428aa79f7c6d94284, type: 2}
 --- !u!1 &1966479811
 GameObject:
   m_ObjectHideFlags: 0

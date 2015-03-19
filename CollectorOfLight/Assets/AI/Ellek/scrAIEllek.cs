@@ -15,6 +15,8 @@ public class scrAIEllek : MobileObstacleMoveScript
 
 	float targetAngle;
 
+	public AudioClip bellow;
+
 	enum State
 	{
 		RUNNING,
@@ -31,7 +33,6 @@ public class scrAIEllek : MobileObstacleMoveScript
 		switch (state)
 		{
 		case State.RUNNING:
-
 			if (followTimer > 0)
 			{
 				followTimer -= Time.deltaTime;
@@ -39,6 +40,7 @@ public class scrAIEllek : MobileObstacleMoveScript
 			else if (Vector3.Distance(transform.position, PlayerController.Instance.transform.position) <= FOLLOW_RADIUS)
 			{
 				state = State.FOLLOWING;
+				audio.PlayOneShot(bellow);
 				followDuration = Random.Range (FOLLOW_DURATION_MIN, FOLLOW_DURATION_MAX);
 				break;
 			}
@@ -53,11 +55,11 @@ public class scrAIEllek : MobileObstacleMoveScript
 			}
 			break;
 		case State.FOLLOWING:
-
 			followTimer += Time.deltaTime;
 			if (followTimer >= followDuration)
 			{
 				state = State.RUNNING;
+				audio.PlayOneShot(bellow);
 				break;
 			}
 

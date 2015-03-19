@@ -1,5 +1,9 @@
 fileFormatVersion: 2
+<<<<<<< HEAD
 guid: 561bd1c7ee6966248a90d8b6c98e32c6
+=======
+guid: 3982499079633b143a18c49b4b6cfedb
+>>>>>>> origin/James
 AudioImporter:
   serializedVersion: 4
   format: 0

@@ -64,7 +64,7 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 		
 		if (MoveModelToLandscape) {
 			// Set the y of the model.
-			model.transform.position = new Vector3 (model.transform.position.x, scrLandscape.Instance.GetHeightFromNoise (rigidbody.position.x, rigidbody.position.z), model.transform.position.z);
+			model.transform.position = new Vector3 (model.transform.position.x, scrLandscape.Instance.GetHeightFromNoise (rigidbody.position.x, rigidbody.position.z) -0.5f, model.transform.position.z);
 
 			// Reset the model's rotation.
 			model.transform.rotation = Quaternion.identity;

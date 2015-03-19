@@ -59,7 +59,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
 
 		if(Input.GetKeyDown(KeyCode.J))
 		{
-			Jump(5);
+			Jump(3);
 		}
 	}
 
@@ -117,23 +117,27 @@ public class EllekMoveScript : MobileObstacleMoveScript
 
 	protected override void NonAttachedMovement ()
 	{
-		/*if (transform.position.y > startJumpPosition.y + jumpHeight) 
+        
+		if (transform.position.y > startJumpPosition.y + jumpHeight) 
 		{
 			moveUp = false;
 		}
 
-		if (moveUp) 
-		{
-			transform.position += new Vector3(0,0.1f,0);
-		}
-		else
-		{
-			transform.position += new Vector3(0,-0.1f,0);
-		}
-		lastJumpPosition = transform.position;*/
-		if (GetComponentInChildren<BoxCollider>().collider.bounds.max.y <= scrLandscape.Instance.GetHeightFromNoise (transform.position.x, transform.position.z) + 0.5f) {
-			MoveModelToLandscape = true;
-		}
+        if (moveUp)
+        {
+            transform.position += new Vector3(0, 0.1f, 0);
+        }
+        else
+        {
+            transform.position -= new Vector3(0, 0.05f, 0);
+            if (GetComponentInChildren<BoxCollider>().collider.bounds.max.y <= scrLandscape.Instance.GetHeightFromNoise(transform.position.x, transform.position.z) + 1.5f)
+            {
+                MoveModelToLandscape = true;
+            }
+        }
+        rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
+		//lastJumpPosition = transform.position;*/
+		
 			
 	}
 
@@ -142,11 +146,11 @@ public class EllekMoveScript : MobileObstacleMoveScript
 	public void Jump(float height)
 	{
 		MoveModelToLandscape = false;
-		//jumpHeight = height;
-		//moveUp = true;
+		jumpHeight = height;
+		moveUp = true;
 		//rigidbody.isKinematic = false;
-		//rigidbody.AddForce (new Vector3 (0, 2, 0));
-		//startJumpPosition = gameObject.transform.position;
+		//rigidbody.AddForce (new Vector3 (0, -20, 0));
+		startJumpPosition = gameObject.transform.position;
 		//lastJumpPosition = startJumpPosition;
 	}
 

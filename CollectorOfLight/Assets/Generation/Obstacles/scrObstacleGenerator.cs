@@ -52,7 +52,7 @@ public class scrObstacleGenerator : scrGenerator
 
 	protected override void Generate ()
 	{
-		if (PlayerController.Instance.LightScore == 0) return;	// Do not generate if player has no light.
+		//if (PlayerController.Instance.LightScore == 0) return;	// Do not generate if player has no light.
 
 		// Check for a free position.
 		Vector2 position;
@@ -87,7 +87,7 @@ public class scrObstacleGenerator : scrGenerator
 			{			
 				// Choose an obstacle to generate.
 				scrPoolable obstacle = null;
-				switch (Random.Range (0, 3))
+				switch (Random.Range (0, 4))
 				{
 				case 0:
 					obstacle = pools["Plant Clusters"].Create (position.x, position.y, 16);
@@ -98,6 +98,9 @@ public class scrObstacleGenerator : scrGenerator
 				case 2:
 					obstacle = pools["Pillars and Rocks"].Create(position.x, position.y);
 					break;
+                case 3:
+                    obstacle = pools["Ramps"].Create(position.x, position.y);
+                    break;
 				}
 			}
 		}

@@ -20,6 +20,7 @@ public class PlayerController : MonoBehaviour
 
 	public Slider KinectSlider;
 	private Canvas canvas;
+	private Image vignette;
 
 
 	void Awake()
@@ -30,6 +31,7 @@ public class PlayerController : MonoBehaviour
 		LightScore = 10;
 		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
 		canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
+		vignette = canvas.transform.Find("Vignette").GetComponent<Image>();
 	}
 
 	// Update is called once per frame
@@ -69,6 +71,9 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Turning did not register; player rotated too far.");
 		}
+
+		// Set the vignette colour to exponentially get whiter with the light score, with full white occurring at 100 orbs.
+		vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 10000.0f);
 	}
 
 	void FixedUpdate()

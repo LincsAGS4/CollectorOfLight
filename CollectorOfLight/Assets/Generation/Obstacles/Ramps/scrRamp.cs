@@ -31,7 +31,7 @@ public class scrRamp : scrPoolable {
         float x = (float)initParams[0];
         float z = (float)initParams[1];
         transform.position = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
-        transform.up = scrLandscape.Instance.GetNormal(x, z);
+        //transform.up = scrLandscape.Instance.GetNormal(x, z);
 
     }
 }

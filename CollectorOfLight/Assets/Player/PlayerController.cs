@@ -28,10 +28,22 @@ public class PlayerController : MonoBehaviour
 		Instance = this;
 		currentFacing = 0;
 		turnRate = 0.5f;
+<<<<<<< HEAD
 		LightScore = 10;
+=======
+		LightScore = 40;
+>>>>>>> origin/master
 		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
 		canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
 		vignette = canvas.transform.Find("Vignette").GetComponent<Image>();
+
+		if (Mathf.Abs ((float)Screen.currentResolution.width / (float)Screen.currentResolution.height - 16.0f / 9.0f) > 0.01f)
+		{
+			Vector3 offset = new Vector3(-8.5f, 3.0f, 8.0f);
+			GameObject.Find ("GUICamera").transform.Find ("Gem").transform.localPosition = offset;
+			offset = new Vector3(-8.5f, 4.1f, 10.0f);
+			GameObject.Find ("GUICamera").transform.Find ("Orb").transform.localPosition = offset;
+		}
 	}
 
 	// Update is called once per frame
@@ -50,6 +62,10 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Turning did not register; player rotated too far.");
 		}
+
+		
+		// Set the vignette colour to exponentially get whiter with the light score, with full white occurring at 50 orbs.
+		vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 2500.0f);
 
 		Speed2D = ellekSystem.adjustedSpeed;
 		Velocity2D = new Vector2(transform.forward.x, transform.forward.z) * Speed2D;
@@ -71,6 +87,7 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Turning did not register; player rotated too far.");
 		}
+<<<<<<< HEAD
 
         if (Input.GetKey(KeyCode.L))
         {
@@ -79,6 +96,8 @@ public class PlayerController : MonoBehaviour
 
 		// Set the vignette colour to exponentially get whiter with the light score, with full white occurring at 100 orbs.
 		vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 10000.0f);
+=======
+>>>>>>> origin/master
 	}
 
 	void FixedUpdate()

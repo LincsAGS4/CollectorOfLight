@@ -1,20 +1,50 @@
 fileFormatVersion: 2
-guid: 6df267abff5bf83428106d82611504d6
+guid: a7fab5b803185e841be06db651f3a4be
 ModelImporter:
   serializedVersion: 16
   fileIDToRecycleName:
-    100000: //RootNode
-    100002: pCube1
-    100004: pCube2
-    400000: //RootNode
-    400002: pCube1
-    400004: pCube2
-    2300000: pCube1
-    2300002: pCube2
-    3300000: pCube1
-    3300002: pCube2
-    4300000: pCube1
-    4300002: pCube2
+    100000: cone1_copy10_Petals2
+    100002: cone1_copy11_Petals
+    100004: cone1_copy12_Petals4
+    100006: cone1_copy5_Plant
+    100008: cone1_copy6_Petals3
+    100010: cone1_copy7_Plant
+    100012: cone1_copy8_Plant
+    100014: cone1_copy9_Plant
+    100016: //RootNode
+    400000: cone1_copy10_Petals2
+    400002: cone1_copy11_Petals
+    400004: cone1_copy12_Petals4
+    400006: cone1_copy5_Plant
+    400008: cone1_copy6_Petals3
+    400010: cone1_copy7_Plant
+    400012: cone1_copy8_Plant
+    400014: cone1_copy9_Plant
+    400016: //RootNode
+    2300000: cone1_copy10_Petals2
+    2300002: cone1_copy11_Petals
+    2300004: cone1_copy12_Petals4
+    2300006: cone1_copy5_Plant
+    2300008: cone1_copy6_Petals3
+    2300010: cone1_copy7_Plant
+    2300012: cone1_copy8_Plant
+    2300014: cone1_copy9_Plant
+    3300000: cone1_copy10_Petals2
+    3300002: cone1_copy11_Petals
+    3300004: cone1_copy12_Petals4
+    3300006: cone1_copy5_Plant
+    3300008: cone1_copy6_Petals3
+    3300010: cone1_copy7_Plant
+    3300012: cone1_copy8_Plant
+    3300014: cone1_copy9_Plant
+    4300000: cone1_copy10_Petals2
+    4300002: cone1_copy11_Petals
+    4300004: cone1_copy12_Petals4
+    4300006: cone1_copy5_Plant
+    4300008: cone1_copy6_Petals3
+    4300010: cone1_copy7_Plant
+    4300012: cone1_copy8_Plant
+    4300014: cone1_copy9_Plant
     9500000: //RootNode
   materials:
     importMaterials: 1

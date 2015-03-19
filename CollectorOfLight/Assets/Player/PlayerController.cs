@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour
 		Instance = this;
 		currentFacing = 0;
 		turnRate = 0.5f;
-		LightScore = 10;
+		LightScore = 0;
 		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
 		canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
 		vignette = canvas.transform.Find("Vignette").GetComponent<Image>();

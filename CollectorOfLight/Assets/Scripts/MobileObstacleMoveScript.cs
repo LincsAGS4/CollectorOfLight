@@ -19,6 +19,8 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 	protected float ragdollDuration = 3.0f;
 	protected float ragdollTimer = 0.0f;
 
+	protected bool jumping;
+
 	// Use this for initialization
 	void Awake () 
     {
@@ -40,13 +42,11 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 				RagdollActive = false;
 				rigidbody.isKinematic = true;
 
-				transform.position = model.transform.position;
-				Vector3 modelPos = transform.position;
 				transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
-				model.transform.position = modelPos;
+				transform.rotation = Quaternion.identity;
 
 			}
-			MoveModelToLandscape = true;
+			//MoveModelToLandscape = true;
 			return;
 		}
 
@@ -59,10 +59,11 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 
 	void FixedUpdate()
 	{
-		// Move the rigidbody forwards.
-		rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
 		
-		if (MoveModelToLandscape) {
+		if (MoveModelToLandscape && !RagdollActive) {
+			// Move the rigidbody forwards.
+			rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
+
 			// Set the y of the model.
 			model.transform.position = new Vector3 (model.transform.position.x, scrLandscape.Instance.GetHeightFromNoise (rigidbody.position.x, rigidbody.position.z) -0.5f, model.transform.position.z);
 
@@ -109,7 +110,7 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 			Debug.DrawLine (model.transform.position, model.transform.position + model.transform.up * 100);
 			#endregion
 		}
-		else {
+		else if (jumping) {
 			NonAttachedMovement();
 		}
 	}

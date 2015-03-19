@@ -134,6 +134,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
             if (GetComponentInChildren<BoxCollider>().collider.bounds.max.y <= scrLandscape.Instance.GetHeightFromNoise(transform.position.x, transform.position.z) + 1.5f)
             {
                 MoveModelToLandscape = true;
+				jumping = false;
             }
         }
         rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
@@ -149,6 +150,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
 		MoveModelToLandscape = false;
 		jumpHeight = height;
 		moveUp = true;
+		jumping = true;
 		//rigidbody.isKinematic = false;
 		//rigidbody.AddForce (new Vector3 (0, -20, 0));
 		startJumpPosition = gameObject.transform.position;

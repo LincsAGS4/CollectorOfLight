@@ -3,8 +3,8 @@ using System.Collections;
 
 public class scrPowerup : scrPoolable
 {
-	const float LEVITATE_HEIGHT = 0.4f;	// Height above the ground the light bobs up and down.
-	const float BOB_HEIGHT = 0.2f;	// Maximum height of a bob.
+	const float LEVITATE_HEIGHT = 2.2f;	// Height above the ground the light bobs up and down.
+	const float BOB_HEIGHT = 0.5f;	// Maximum height of a bob.
 	const float BOB_RATE = 0.5f;	// Rate at which the light bobs up and down.
 
 	public enum Powerup
@@ -38,22 +38,22 @@ public class scrPowerup : scrPoolable
 		case Powerup.Speed:
 			// Make red.
 			GetComponent<ParticleSystem>().startColor = Color.red;
-
+			transform.Find("Glow").GetComponent<ParticleSystem>().startColor = Color.red * 0.6f + Color.white * 0.2f;
 			break;
 		case Powerup.Ghost:
 			// Make blue.
 			GetComponent<ParticleSystem>().startColor = Color.blue;
-
+			transform.Find("Glow").GetComponent<ParticleSystem>().startColor = Color.blue * 0.6f + Color.white * 0.2f;
 			break;
 		case Powerup.Magnet:
 			// Make pink.
 			GetComponent<ParticleSystem>().startColor = Color.magenta;
-
+			transform.Find("Glow").GetComponent<ParticleSystem>().startColor = Color.magenta * 0.6f + Color.white * 0.2f;
 			break;
 		case Powerup.MoreLight:
 			// Make yellow.
 			GetComponent<ParticleSystem>().startColor = Color.yellow;
-
+			transform.Find("Glow").GetComponent<ParticleSystem>().startColor = Color.yellow * 0.6f + Color.white * 0.2f;
 			break;
 		}
 	}
@@ -86,5 +86,8 @@ public class scrPowerup : scrPoolable
 
 		// Push away from the ground.
 		transform.position += transform.up * transform.localScale.y;
+
+		foreach (ParticleSystem p in GetComponentsInChildren<ParticleSystem>())
+			p.Clear();
 	}
 }

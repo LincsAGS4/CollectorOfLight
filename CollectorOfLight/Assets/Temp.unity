@@ -249,7 +249,7 @@ RectTransform:
   m_Children:
   - {fileID: 1739844391}
   m_Father: {fileID: 0}
-  m_RootOrder: 6
+  m_RootOrder: 8
   m_AnchorMin: {x: 0, y: 0}
   m_AnchorMax: {x: 0, y: 0}
   m_AnchoredPosition: {x: 0, y: 0}
@@ -659,7 +659,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 7
+  m_RootOrder: 9
 --- !u!1 &1245005769
 GameObject:
   m_ObjectHideFlags: 0
@@ -883,7 +883,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
-  m_RootOrder: 5
+  m_RootOrder: 6
 --- !u!114 &1609270031
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -983,6 +983,182 @@ MonoBehaviour:
       m_Calls: []
     m_TypeName: UnityEngine.UI.Slider+SliderEvent, UnityEngine.UI, Version=1.0.0.0,
       Culture=neutral, PublicKeyToken=null
+--- !u!1 &1791014102
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1791014105}
+  - 114: {fileID: 1791014104}
+  - 114: {fileID: 1791014103}
+  m_Layer: 0
+  m_Name: PowerupGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1791014103
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791014102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0d4ea659014c78043a606f3d5dd1ac7c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Generating: 1
+--- !u!114 &1791014104
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791014102}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Powerups
+  Capacity: 20
+  Prefabs:
+  - {fileID: 171638, guid: 655536a2d2e1fac4f9ebd9969e18663f, type: 2}
+--- !u!4 &1791014105
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1791014102}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 5
+--- !u!1 &1897210357
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 1897210364}
+  - 114: {fileID: 1897210363}
+  - 114: {fileID: 1897210362}
+  - 114: {fileID: 1897210361}
+  - 114: {fileID: 1897210360}
+  - 114: {fileID: 1897210359}
+  - 114: {fileID: 1897210358}
+  m_Layer: 0
+  m_Name: AnimalGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: -1077886335, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!114 &1897210358
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897210357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 313f6504a5b6f9641a17d8b633184361, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Generating: 1
+--- !u!114 &1897210359
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897210357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Tribbet
+  Capacity: 20
+  Prefabs:
+  - {fileID: 195530, guid: a444df20bba8ccb44a775812ad6f9174, type: 2}
+--- !u!114 &1897210360
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897210357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Snool
+  Capacity: 20
+  Prefabs:
+  - {fileID: 131938, guid: 25352de66cd0a29448aaad3d7331c8e4, type: 2}
+--- !u!114 &1897210361
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897210357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Quirrel
+  Capacity: 20
+  Prefabs:
+  - {fileID: 160216, guid: 74de8399765699e4dad491dd9e800e1d, type: 2}
+--- !u!114 &1897210362
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897210357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Piggem
+  Capacity: 20
+  Prefabs:
+  - {fileID: 131938, guid: 9b87aa1ebbf81b64ba64ecc6a68a2214, type: 2}
+--- !u!114 &1897210363
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897210357}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Ellek
+  Capacity: 20
+  Prefabs:
+  - {fileID: 160216, guid: 2a93703af950b26459e45e52c963b0ab, type: 2}
+--- !u!4 &1897210364
+Transform:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1897210357}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 1, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
 --- !u!1 &1957961648
 GameObject:
   m_ObjectHideFlags: 0

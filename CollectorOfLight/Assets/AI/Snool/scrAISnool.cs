@@ -13,7 +13,6 @@ public class scrAISnool : MobileObstacleMoveScript
 
 	void Start ()
 	{
-		Init ();
 	}
 
 	void OnCollisionEnter(Collision other)
@@ -47,6 +46,12 @@ public class scrAISnool : MobileObstacleMoveScript
 
 	public override void Init (params object[] initParams)
 	{
+		Expired = false;
+
+		float x = (float)initParams[0];
+		float z = (float)initParams[1];
+		transform.position = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
+
 		// Randomise the colour.
 		NotShell.renderer.material = Random.Range (0, 2) == 0 ? MatBabyBlue : MatPowderPink;
 	

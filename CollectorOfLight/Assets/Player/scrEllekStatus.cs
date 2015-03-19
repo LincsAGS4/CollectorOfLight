@@ -126,7 +126,6 @@ public class scrEllekStatus : MonoBehaviour
 	{
 		if (PlayerController.Instance.LightScore != 0)
 		{
-
 			// The light score should be halved.
 			int nextLightScore = PlayerController.Instance.LightScore / 2;
 			int lightToRelease = PlayerController.Instance.LightScore - nextLightScore;
@@ -134,9 +133,9 @@ public class scrEllekStatus : MonoBehaviour
 			// Fling out light orbs in a circle.
 			for (int i = 0; i < lightToRelease; ++i)
 			{
-				float angle = Mathf.Sin ((float)i / lightToRelease * Mathf.PI * 2);
+				float angle = (float)i / (lightToRelease / 4) * Mathf.PI * 2;
 				GameObject orb = ((GameObject)Instantiate(FakeOrbPrefab, ellekSystem.model.transform.position, Quaternion.identity));
-				orb.rigidbody.velocity = new Vector3(Mathf.Sin(angle), 0.5f, Mathf.Cos (angle)) * 10.0f;
+				orb.rigidbody.velocity = new Vector3(Mathf.Sin(angle), 0.5f, Mathf.Cos (angle)) * Random.Range (10.0f, 20.0f);
 				orb.rigidbody.velocity += rigidbody.velocity;
 				--PlayerController.Instance.LightScore;
 				yield return new WaitForSeconds(1.0f / lightToRelease);

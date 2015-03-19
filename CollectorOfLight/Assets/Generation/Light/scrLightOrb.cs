@@ -24,7 +24,7 @@ public class scrLightOrb : scrPoolable
 	protected override void Update ()
 	{
 		// Bob up and down.
-		transform.position = new Vector3(AnchorPosition.x, AnchorPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (AnchorPosition.x + AnchorPosition.y + AnchorPosition.z + Time.time * BOB_RATE), AnchorPosition.z);
+		transform.position = new Vector3(AnchorPosition.x, AnchorPosition.y + LEVITATE_HEIGHT + BOB_HEIGHT * Mathf.Sin (AnchorPosition.x + AnchorPosition.y + AnchorPosition.z + (Time.time + seriesIndex) * BOB_RATE), AnchorPosition.z);
 	
 		// Draw a line to the next orb as long as the next orb is the next in the series, otherwise the series has been broken at some point.
 		if (next != null && next.seriesIndex == seriesIndex + 1)

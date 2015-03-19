@@ -26,7 +26,7 @@ public class PlayerController : MonoBehaviour
 		Instance = this;
 		currentFacing = 0;
 		turnRate = 0.5f;
-		LightScore = 0;
+		LightScore = 10;
 	}
 
 	// Update is called once per frame

@@ -28,11 +28,8 @@ public class PlayerController : MonoBehaviour
 		Instance = this;
 		currentFacing = 0;
 		turnRate = 0.5f;
-<<<<<<< HEAD
 		LightScore = 10;
-=======
-		LightScore = 40;
->>>>>>> origin/master
+
 		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
 		canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
 		vignette = canvas.transform.Find("Vignette").GetComponent<Image>();
@@ -87,7 +84,6 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Turning did not register; player rotated too far.");
 		}
-<<<<<<< HEAD
 
         if (Input.GetKey(KeyCode.L))
         {
@@ -96,8 +92,6 @@ public class PlayerController : MonoBehaviour
 
 		// Set the vignette colour to exponentially get whiter with the light score, with full white occurring at 100 orbs.
 		vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 10000.0f);
-=======
->>>>>>> origin/master
 	}
 
 	void FixedUpdate()

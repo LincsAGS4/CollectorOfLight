@@ -7,7 +7,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
 
     private float speedDecayRate;    //The lambda in the exponential decay equation (may need tweaking, hence public)
 
-	private bool jumping = false;
+	//private bool ellekJumping = false;
 	private bool moveUp;
 	private Vector3 startJumpPosition, lastJumpPosition;
 	private float jumpHeight;

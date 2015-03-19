@@ -1,4 +1,5 @@
 ﻿using UnityEngine;
+using UnityEngine.UI;
 using System.Collections;
 
 public class scrEllekStatus : MonoBehaviour
@@ -30,11 +31,13 @@ public class scrEllekStatus : MonoBehaviour
 	public EllekMoveScript ellekSystem;
 
 	public GameObject FakeOrbPrefab;
+	private Canvas canvas;
 
 	// Use this for initialization
 	void Start ()
 	{
 		originalFOV = Camera.main.fieldOfView;
+		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
 	}
 	
 	// Update is called once per frame
@@ -138,6 +141,7 @@ public class scrEllekStatus : MonoBehaviour
 				orb.rigidbody.velocity = new Vector3(Mathf.Sin(angle), 0.5f, Mathf.Cos (angle)) * Random.Range (10.0f, 20.0f);
 				orb.rigidbody.velocity += rigidbody.velocity;
 				--PlayerController.Instance.LightScore;
+				canvas.transform.Find ("Light").GetComponent<Text>().text = PlayerController.Instance.LightScore.ToString();
 				yield return new WaitForSeconds(1.0f / lightToRelease);
 			}
 		}

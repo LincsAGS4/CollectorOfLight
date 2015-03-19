@@ -13,12 +13,13 @@ public class PlayerController : MonoBehaviour
 	public Vector2 Velocity2D { get; private set; }
 	public float Speed2D { get; private set; }
 	public int LightScore { get; set; }
+	public int GemScore { get; set; }
 
     public InputController inputController;
     public EllekMoveScript ellekSystem;
 
 	public Slider KinectSlider;
-
+	private Canvas canvas;
 
 
 	void Awake()
@@ -27,6 +28,8 @@ public class PlayerController : MonoBehaviour
 		currentFacing = 0;
 		turnRate = 0.5f;
 		LightScore = 10;
+		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
+		canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
 	}
 
 	// Update is called once per frame
@@ -87,6 +90,12 @@ public class PlayerController : MonoBehaviour
 		if (other.GetComponent<scrLightOrb>())
 		{
 			++LightScore;
+			canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
+		}
+		else if (other.GetComponent<scrGem>())
+		{
+			++GemScore;
+			canvas.transform.Find ("Gems").GetComponent<Text>().text = GemScore.ToString();
 		}
 	}
 }

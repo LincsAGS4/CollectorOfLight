@@ -25,10 +25,13 @@ public class scrFireflies : MonoBehaviour
 			changeDelay = Random.Range (CHANGE_DELAY_MIN, CHANGE_DELAY_MAX);
 
 			int amountToChange = Random.Range (5, 20);
-			int startIndex = Random.Range (0, particles.Length - amountToChange - 1);
-			for (int i = 0; i < amountToChange; ++i)
+			if (particles.Length >= amountToChange)
 			{
-				particles[startIndex + i].velocity = Random.rotation.eulerAngles.normalized * Random.Range (SPEED_MIN, SPEED_MAX);
+				int startIndex = Random.Range (0, particles.Length - amountToChange - 1);
+				for (int i = 0; i < amountToChange; ++i)
+				{
+					particles[startIndex + i].velocity = Random.rotation.eulerAngles.normalized * Random.Range (SPEED_MIN, SPEED_MAX);
+				}
 			}
 		}
 

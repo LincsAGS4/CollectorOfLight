@@ -3,6 +3,8 @@ using System.Collections;
 
 public sealed class scrLightGenerator : scrGenerator
 {
+	public static scrLightGenerator Instance { get; private set; }
+
 	private const int LENGTH_MIN = 5;	// Minimum length of a line of light.
 	private const int LENGTH_MAX = 15;	// Maximum length of a line of light.
 
@@ -10,12 +12,13 @@ public sealed class scrLightGenerator : scrGenerator
 
 	private void Start()
 	{
+		Instance = this;
 		distanceRequired = 2.0f;
 		distanceOffset = 1.0f;
 		pool = pools["Light"];
 	}
 	
-	private void GenerateLine(float x, float z, int length, float spacing)
+	public void GenerateLine(float x, float z, int length, float spacing)
 	{
 		Vector2 direction = new Vector2(x, z) - scrLandscape.Instance.GetCentre();
 		direction.Normalize();

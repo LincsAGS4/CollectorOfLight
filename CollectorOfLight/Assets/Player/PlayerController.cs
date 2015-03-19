@@ -13,12 +13,14 @@ public class PlayerController : MonoBehaviour
 	public Vector2 Velocity2D { get; private set; }
 	public float Speed2D { get; private set; }
 	public int LightScore { get; set; }
+	public int GemScore { get; set; }
 
     public InputController inputController;
     public EllekMoveScript ellekSystem;
 
 	public Slider KinectSlider;
-
+	private Canvas canvas;
+	private Image vignette;
 
 
 	void Awake()
@@ -26,7 +28,10 @@ public class PlayerController : MonoBehaviour
 		Instance = this;
 		currentFacing = 0;
 		turnRate = 0.5f;
-		LightScore = 0;
+		LightScore = 10;
+		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
+		canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
+		vignette = canvas.transform.Find("Vignette").GetComponent<Image>();
 	}
 
 	// Update is called once per frame
@@ -66,6 +71,9 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Turning did not register; player rotated too far.");
 		}
+
+		// Set the vignette colour to exponentially get whiter with the light score, with full white occurring at 100 orbs.
+		vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 10000.0f);
 	}
 
 	void FixedUpdate()
@@ -87,6 +95,12 @@ public class PlayerController : MonoBehaviour
 		if (other.GetComponent<scrLightOrb>())
 		{
 			++LightScore;
+			canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
+		}
+		else if (other.GetComponent<scrGem>())
+		{
+			++GemScore;
+			canvas.transform.Find ("Gems").GetComponent<Text>().text = GemScore.ToString();
 		}
 	}
 }

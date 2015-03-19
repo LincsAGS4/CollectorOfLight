@@ -40,10 +40,8 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 				RagdollActive = false;
 				rigidbody.isKinematic = true;
 
-				transform.position = model.transform.position;
-				Vector3 modelPos = transform.position;
 				transform.position = new Vector3(transform.position.x, 0.0f, transform.position.z);
-				model.transform.position = modelPos;
+				transform.rotation = Quaternion.identity;
 
 			}
 
@@ -57,12 +55,12 @@ public abstract class MobileObstacleMoveScript : scrPoolable
     }
 
 	void FixedUpdate()
-	{
-		// Move the rigidbody forwards.
-		rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
-		
-		if (MoveModelToLandscape)
+	{		
+		if (MoveModelToLandscape && !RagdollActive)
 		{
+			// Move the rigidbody forwards.
+			rigidbody.MovePosition(rigidbody.position + transform.forward * adjustedSpeed * Time.fixedDeltaTime);
+
 			// Set the y of the model.
 			model.transform.position = new Vector3(model.transform.position.x, scrLandscape.Instance.GetHeightFromNoise(rigidbody.position.x, rigidbody.position.z), model.transform.position.z);
 

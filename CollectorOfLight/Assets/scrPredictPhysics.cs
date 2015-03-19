@@ -9,7 +9,8 @@ public class scrPredictPhysics : MonoBehaviour
 {
 	public bool ForcePrediction = false;
 	public bool UsingPrediction { get; private set; }
-	
+	public bool OnGround { get; private set; }
+
 	private delegate void Prediction();
 	private Prediction prediction;
 
@@ -53,6 +54,12 @@ public class scrPredictPhysics : MonoBehaviour
 			// Bounce a bit away from the landscape.
 			float speed = rigidbody.velocity.magnitude;
 			rigidbody.velocity = scrLandscape.Instance.GetNormalFromNoise(transform.position.x, transform.position.z, 0.5f) * speed * 0.6f;
+
+			OnGround = true;
+		}
+		else
+		{
+			OnGround = false;
 		}
 	}
 

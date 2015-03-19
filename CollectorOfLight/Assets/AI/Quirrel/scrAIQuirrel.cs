@@ -24,7 +24,6 @@ public class scrAIQuirrel : MobileObstacleMoveScript
 
 	void Start ()
 	{
-		Init ();
 	}
 
 	protected override void SpecificMovement ()
@@ -116,6 +115,12 @@ public class scrAIQuirrel : MobileObstacleMoveScript
 
 	public override void Init (params object[] initParams)
 	{
+		Expired = false;
+
+		float x = (float)initParams[0];
+		float z = (float)initParams[1];
+		transform.position = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
+
 		// Randomise the direction.
 		transform.rotation = Quaternion.Euler(0, Random.Range (0, 360), 0);
 	}

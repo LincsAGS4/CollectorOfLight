@@ -54,6 +54,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
         float currentAngle = transform.eulerAngles.y + (rotationAngle * (turnScale) / (Mathf.PI / 180));
 		transform.eulerAngles = new Vector3 (0, currentAngle, 0);
 
+		currentSpeed = 15.0f + PlayerController.Instance.LightScore * 0.5f;
 
         //If speed has been changed, adjust speed towards standard speed using exponential decay
         //Speed at time t == maxSpeed * e ^ (speedDecayRate * t)

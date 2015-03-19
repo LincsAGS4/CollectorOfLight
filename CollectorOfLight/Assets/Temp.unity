@@ -73,7 +73,6 @@ NavMeshSettings:
     minRegionArea: 2
     widthInaccuracy: 16.666666
     heightInaccuracy: 10
-    tileSizeHint: 0
   m_NavMesh: {fileID: 0}
 --- !u!1001 &116681418
 Prefab:
@@ -268,7 +267,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &248296974
 RectTransform:
   m_ObjectHideFlags: 0
@@ -297,7 +296,7 @@ MonoBehaviour:
   m_Script: {fileID: -765806418, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_Material: {fileID: 0}
+  m_Material: {fileID: 10754, guid: 0000000000000000e000000000000000, type: 0}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_Sprite: {fileID: 21300000, guid: e917f1c0198644d45b717a96b1f97131, type: 3}
   m_Type: 0
@@ -448,8 +447,8 @@ MonoBehaviour:
   m_Script: {fileID: 1301386320, guid: f5f67c52d1564df4a8936ccd202a3bd8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  m_IgnoreReversedGraphics: 1
-  m_BlockingObjects: 0
+  ignoreReversedGraphics: 1
+  blockingObjects: 0
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
@@ -2361,7 +2360,7 @@ GameObject:
   - 198: {fileID: 1380147222}
   - 199: {fileID: 1380147221}
   m_Layer: 5
-  m_Name: FakeOrb
+  m_Name: Orb
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -6143,7 +6142,7 @@ MonoBehaviour:
   Identifier: Snool
   Capacity: 20
   Prefabs:
-  - {fileID: 131938, guid: 25352de66cd0a29448aaad3d7331c8e4, type: 2}
+  - {fileID: 156558, guid: 71505827a27457142b4a12fbf4efcb62, type: 2}
 --- !u!114 &1897210361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -7655,6 +7654,10 @@ Prefab:
     - target: {fileID: 11452110, guid: 9d64694c92cfa69428aa79f7c6d94284, type: 2}
       propertyPath: spinRate
       value: 20
+      objectReference: {fileID: 0}
+    - target: {fileID: 152118, guid: 9d64694c92cfa69428aa79f7c6d94284, type: 2}
+      propertyPath: m_Name
+      value: Orb
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 11461852, guid: 9d64694c92cfa69428aa79f7c6d94284, type: 2}

@@ -11,14 +11,13 @@ public class scrAITribbet : MobileObstacleMoveScript
 	float jumpAmount = 0.0f;
 	bool jumping = false;
 
-	const float TIME_UNTIL_JUMP_MAX = 20.0f;
-	const float TIME_UNTIL_JUMP_MIN = 10.0f;
+	const float TIME_UNTIL_JUMP_MAX = 4.0f;
+	const float TIME_UNTIL_JUMP_MIN = 1.0f;
 	float timeUntilNextJump = 0.0f;
 	
 
 	void Start ()
 	{
-		Init ();
 	}
 
 	protected override void SpecificMovement ()
@@ -66,10 +65,18 @@ public class scrAITribbet : MobileObstacleMoveScript
 
 	public override void Init (params object[] initParams)
 	{
+		Expired = false;
+
+		float x = (float)initParams[0];
+		float z = (float)initParams[1];
+		transform.position = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
+
 		// Randomise the direction.
 		transform.rotation = Quaternion.Euler(0, Random.Range (0, 360), 0);
 
 		// Make sure speed is 0.
 		standardSpeed = 0;
+
+		float timeUntilNextJump = Random.Range (TIME_UNTIL_JUMP_MIN, TIME_UNTIL_JUMP_MAX + 1);
 	}
 }

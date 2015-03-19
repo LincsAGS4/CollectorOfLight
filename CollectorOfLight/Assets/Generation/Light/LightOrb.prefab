@@ -165,8 +165,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d8301419acc77704dbf9b2ecb3c867ae, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  spinRate: 2
-  lightOrb: {fileID: 185096}
+  spinRate: 20
+  lightOrb: {fileID: 152118}
 --- !u!114 &11486462
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -178,6 +178,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f9e7f673a621870478a4634b921fb017, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnExpire: 0
   AnchorPosition: {x: 0, y: 0, z: 0}
 --- !u!120 &12003476
 LineRenderer:

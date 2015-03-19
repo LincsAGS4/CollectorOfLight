@@ -3,6 +3,8 @@ using System.Collections;
 
 public class scrAIPiggem : MobileObstacleMoveScript
 {
+	public Material[] SkinMats;
+
 	float turnDelay = 3.0f;
 	float turnTimer = 0.0f;
 	float targetAngle;
@@ -10,7 +12,6 @@ public class scrAIPiggem : MobileObstacleMoveScript
 	void Start ()
 	{
 		ragdollDuration = 10.0f;
-		Init ();
 	}
 
 	void ChangeDirection()
@@ -45,8 +46,14 @@ public class scrAIPiggem : MobileObstacleMoveScript
 
 	public override void Init (params object[] initParams)
 	{
+		Expired = false;
+
 		// Randomise the colour.
-		//model.renderer.material = Random.Range (0, 2) == 0 ? MatBabyBlue : MatPowderPink;
+		model.renderer.material = SkinMats[Random.Range (0, SkinMats.Length)];
+
+		float x = (float)initParams[0];
+		float z = (float)initParams[1];
+		transform.position = new Vector3(x, scrLandscape.Instance.GetHeight(x, z), z);
 
 		ChangeDirection();
 		targetAngle = transform.eulerAngles.y;

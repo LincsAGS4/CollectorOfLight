@@ -3,7 +3,7 @@ using System.Collections;
 
 public class LightOrbSpin : MonoBehaviour 
 {
-	public int spinRate;
+	public float spinRate;
     public GameObject lightOrb;
 		
 	// Update is called once per frame
@@ -12,7 +12,7 @@ public class LightOrbSpin : MonoBehaviour
         //rotate orb by that amount
         Vector3 orbRotation = lightOrb.transform.eulerAngles;
 
-        orbRotation.y += spinRate;
+        orbRotation.y += spinRate * Time.deltaTime;
         //If y has passed useful location, reset it
         if (orbRotation.y > 360)
         { orbRotation.y -= 360; }

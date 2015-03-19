@@ -113,12 +113,18 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 344573e8569842943810ca1df3b23fcb, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnExpire: 0
   model: {fileID: 131934}
   currentSpeed: 0
   adjustedSpeed: 0
   standardSpeed: 0
   verticalAngle: 0
+  MoveModelToLandscape: 1
   RagdollActive: 0
+  SkinMats:
+  - {fileID: 2100000, guid: 5cc524e05a29a9d4489567df76773929, type: 2}
+  - {fileID: 2100000, guid: 35eecff3d13b79549bc53be9ae0cd134, type: 2}
+  - {fileID: 2100000, guid: a2359129a5c67b74789bc8b17f81964b, type: 2}
 --- !u!135 &13531932
 SphereCollider:
   m_ObjectHideFlags: 1

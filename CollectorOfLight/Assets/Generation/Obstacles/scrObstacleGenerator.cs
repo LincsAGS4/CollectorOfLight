@@ -5,7 +5,7 @@ public class scrObstacleGenerator : scrGenerator
 {
 	public static scrObstacleGenerator Instance { get; private set; } 
 
-	private const float DISTANCE_MAX = 20.0f;
+	private const float DISTANCE_MAX = 160.0f;
 	private const float DISTANCE_MIN = 2.0f;
 	private const float DISTANCE_REDUCTION_PER_LIGHT = 1.0f;
 

@@ -113,7 +113,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 8300000, guid: c3c7726288fccaa41881f7e4a511675b, type: 3}
   m_PlayOnAwake: 1
-  m_Volume: 1
+  m_Volume: .5
   m_Pitch: 1
   Loop: 1
   Mute: 0
@@ -122,21 +122,21 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
   rolloffCustomCurve:
     serializedVersion: 2
     m_Curve:
-    - time: 0
+    - time: .00200000009
       value: 1
       inSlope: 0
-      outSlope: 0
+      outSlope: -1.00200403
       tangentMode: 0
     - time: 1
-      value: 0
-      inSlope: 0
+      value: .0303030312
+      inSlope: -1.00200403
       outSlope: 0
       tangentMode: 0
     m_PreInfinity: 2
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b551fd95d7284fb4c9de9a71e463b99e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnExpire: 0
   model: {fileID: 160214}
   currentSpeed: 10
   adjustedSpeed: 0
@@ -179,7 +180,7 @@ MonoBehaviour:
   verticalAngle: 0
   MoveModelToLandscape: 1
   RagdollActive: 0
-  bellow: {fileID: 8300000, guid: 728bfeb7a01d65345901caa2998fede8, type: 3}
+  bellow: {fileID: 8300000, guid: 540c0c25de6fedf47954a928bf95be9f, type: 3}
 --- !u!135 &13560214
 SphereCollider:
   m_ObjectHideFlags: 1

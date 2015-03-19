@@ -111,7 +111,7 @@ AudioSource:
   m_GameObject: {fileID: 160216}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 0}
+  m_audioClip: {fileID: 8300000, guid: c3c7726288fccaa41881f7e4a511675b, type: 3}
   m_PlayOnAwake: 0
   m_Volume: 1
   m_Pitch: 1
@@ -122,7 +122,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9904ac4f6bdd66346a6165aa27b848b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnExpire: 0
   model: {fileID: 160214}
   currentSpeed: 0
   adjustedSpeed: 0
@@ -179,9 +180,9 @@ MonoBehaviour:
   verticalAngle: 0
   MoveModelToLandscape: 1
   RagdollActive: 0
-  fleeing: {fileID: 8300000, guid: 44367f4bd6477ac44acdd5add508e2f4, type: 3}
+  fleeing: {fileID: 8300000, guid: a3b2f63476e21614ca3e9bdcc6cf91b2, type: 3}
   running: {fileID: 8300000, guid: c3c7726288fccaa41881f7e4a511675b, type: 3}
-  pausing: {fileID: 8300000, guid: a9e9f65aea6cd684a935d3fc5881fd25, type: 3}
+  pausing: {fileID: 8300000, guid: 57928553aee694149bbd969ad46b7c65, type: 3}
 --- !u!135 &13560214
 SphereCollider:
   m_ObjectHideFlags: 1

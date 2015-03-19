@@ -6143,7 +6143,7 @@ MonoBehaviour:
   Identifier: Snool
   Capacity: 20
   Prefabs:
-  - {fileID: 131938, guid: 25352de66cd0a29448aaad3d7331c8e4, type: 2}
+  - {fileID: 0}
 --- !u!114 &1897210361
 MonoBehaviour:
   m_ObjectHideFlags: 0

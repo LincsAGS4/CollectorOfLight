@@ -14,7 +14,8 @@ public class scrAITribbet : MobileObstacleMoveScript
 	const float TIME_UNTIL_JUMP_MAX = 20.0f;
 	const float TIME_UNTIL_JUMP_MIN = 10.0f;
 	float timeUntilNextJump = 0.0f;
-	
+
+	public AudioClip scream;
 
 	void Start ()
 	{
@@ -25,6 +26,7 @@ public class scrAITribbet : MobileObstacleMoveScript
 	{
 		if (jumping)
 		{
+			audio.PlayOneShot(scream);
 			jumpAmount += Time.deltaTime * JUMP_SPEED;
 			if (jumpAmount >= 1.0f)
 			{

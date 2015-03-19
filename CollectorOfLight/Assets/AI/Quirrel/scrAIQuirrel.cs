@@ -14,6 +14,10 @@ public class scrAIQuirrel : MobileObstacleMoveScript
 
 	float targetAngle;
 
+	public AudioClip fleeing;
+	public AudioClip running;
+	public AudioClip pausing;
+
 	enum State
 	{
 		RUNNING,
@@ -37,7 +41,7 @@ public class scrAIQuirrel : MobileObstacleMoveScript
 		switch (state)
 		{
 		case State.RUNNING:
-
+			audio.PlayOneShot(running);
 			// Increase or decrease the speed to the standard speed.
 			if (currentSpeed < standardSpeed)
 			{
@@ -73,7 +77,7 @@ public class scrAIQuirrel : MobileObstacleMoveScript
 
 			break;
 		case State.PAUSING:
-
+			audio.PlayOneShot(pausing);
 			// Decrease the speed to zero.
 			currentSpeed -= Time.deltaTime * standardSpeed * 2;
 			if (currentSpeed <= 0)
@@ -89,7 +93,8 @@ public class scrAIQuirrel : MobileObstacleMoveScript
 
 			break;
 		case State.FLEEING:
-
+			audio.PlayOneShot(fleeing);
+			audio.PlayOneShot(running);
 			Vector3 direction = transform.position - PlayerController.Instance.transform.position;
 
 			// If out of the alert radius, stop running away.

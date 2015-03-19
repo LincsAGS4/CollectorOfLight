@@ -1,0 +1,102 @@
+fileFormatVersion: 2
+guid: 5c4bc1f07360b934ea8f869061a81086
+ModelImporter:
+  serializedVersion: 16
+  fileIDToRecycleName:
+    100000: cone1_copy10_Petals2
+    100002: cone1_copy11_Petals
+    100004: cone1_copy12_Petals4
+    100006: cone1_copy5_Plant
+    100008: cone1_copy6_Petals3
+    100010: cone1_copy7_Plant
+    100012: cone1_copy8_Plant
+    100014: cone1_copy9_Plant
+    100016: //RootNode
+    400000: cone1_copy10_Petals2
+    400002: cone1_copy11_Petals
+    400004: cone1_copy12_Petals4
+    400006: cone1_copy5_Plant
+    400008: cone1_copy6_Petals3
+    400010: cone1_copy7_Plant
+    400012: cone1_copy8_Plant
+    400014: cone1_copy9_Plant
+    400016: //RootNode
+    2300000: cone1_copy10_Petals2
+    2300002: cone1_copy11_Petals
+    2300004: cone1_copy12_Petals4
+    2300006: cone1_copy5_Plant
+    2300008: cone1_copy6_Petals3
+    2300010: cone1_copy7_Plant
+    2300012: cone1_copy8_Plant
+    2300014: cone1_copy9_Plant
+    3300000: cone1_copy10_Petals2
+    3300002: cone1_copy11_Petals
+    3300004: cone1_copy12_Petals4
+    3300006: cone1_copy5_Plant
+    3300008: cone1_copy6_Petals3
+    3300010: cone1_copy7_Plant
+    3300012: cone1_copy8_Plant
+    3300014: cone1_copy9_Plant
+    4300000: cone1_copy10_Petals2
+    4300002: cone1_copy11_Petals
+    4300004: cone1_copy12_Petals4
+    4300006: cone1_copy5_Plant
+    4300008: cone1_copy6_Petals3
+    4300010: cone1_copy7_Plant
+    4300012: cone1_copy8_Plant
+    4300014: cone1_copy9_Plant
+    9500000: //RootNode
+  materials:
+    importMaterials: 1
+    materialName: 0
+    materialSearch: 1
+  animations:
+    legacyGenerateAnimations: 4
+    bakeSimulation: 0
+    optimizeGameObjects: 0
+    motionNodeName: 
+    animationCompression: 1
+    animationRotationError: .5
+    animationPositionError: .5
+    animationScaleError: .5
+    animationWrapMode: 0
+    extraExposedTransformPaths: []
+    clipAnimations: []
+    isReadable: 1
+  meshes:
+    lODScreenPercentages: []
+    globalScale: 1
+    meshCompression: 0
+    addColliders: 0
+    importBlendShapes: 1
+    swapUVChannels: 0
+    generateSecondaryUV: 0
+    useFileUnits: 1
+    optimizeMeshForGPU: 1
+    weldVertices: 1
+    secondaryUVAngleDistortion: 8
+    secondaryUVAreaDistortion: 15.000001
+    secondaryUVHardAngle: 88
+    secondaryUVPackMargin: 4
+  tangentSpace:
+    normalSmoothAngle: 60
+    splitTangentsAcrossUV: 1
+    normalImportMode: 0
+    tangentImportMode: 1
+  importAnimation: 1
+  copyAvatar: 0
+  humanDescription:
+    human: []
+    skeleton: []
+    armTwist: .5
+    foreArmTwist: .5
+    upperLegTwist: .5
+    legTwist: .5
+    armStretch: .0500000007
+    legStretch: .0500000007
+    feetSpacing: 0
+    rootMotionBoneName: 
+  lastHumanDescriptionAvatarSource: {instanceID: 0}
+  animationType: 2
+  additionalBone: 0
+  userData: 

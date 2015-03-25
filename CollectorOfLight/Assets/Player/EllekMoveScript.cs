@@ -119,7 +119,7 @@ public class EllekMoveScript : MobileObstacleMoveScript
 	protected override void NonAttachedMovement ()
 	{
         
-		if (transform.position.y > startJumpPosition.y + jumpHeight) 
+		/*if (transform.position.y > startJumpPosition.y + jumpHeight) 
 		{
 			moveUp = false;
 		}
@@ -147,14 +147,14 @@ public class EllekMoveScript : MobileObstacleMoveScript
 
 	public void Jump(float height)
 	{
-		MoveModelToLandscape = false;
+		/*MoveModelToLandscape = false;
 		jumpHeight = height;
 		moveUp = true;
 		jumping = true;
 		//rigidbody.isKinematic = false;
 		//rigidbody.AddForce (new Vector3 (0, -20, 0));
 		startJumpPosition = gameObject.transform.position;
-		//lastJumpPosition = startJumpPosition;
+		//lastJumpPosition = startJumpPosition;*/
 	}
 
 	public override void Init (params object[] initParams)

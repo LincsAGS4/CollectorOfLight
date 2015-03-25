@@ -19,8 +19,6 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 	protected float ragdollDuration = 3.0f;
 	protected float ragdollTimer = 0.0f;
 
-	protected bool jumping;
-
 	// Use this for initialization
 	void Awake () 
     {
@@ -110,9 +108,9 @@ public abstract class MobileObstacleMoveScript : scrPoolable
 			Debug.DrawLine (model.transform.position, model.transform.position + model.transform.up * 100);
 			#endregion
 		}
-		else if (jumping) {
-			NonAttachedMovement();
-		}
+		//else if (jumping) {
+			//NonAttachedMovement();
+		//}
 	}
 
 	public void Ragdollize()

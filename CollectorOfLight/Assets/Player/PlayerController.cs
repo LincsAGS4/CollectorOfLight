@@ -19,7 +19,8 @@ public class PlayerController : MonoBehaviour
     public EllekMoveScript ellekSystem;
 
 	public Slider KinectSlider;
-	private Canvas canvas;
+	private Canvas overlayCanvas;
+    private Canvas worldCanvas;
 	private Image vignette;
 
 
@@ -30,17 +31,10 @@ public class PlayerController : MonoBehaviour
 		turnRate = 0.5f;
 		LightScore = 10;
 
-		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
-		canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
-		vignette = canvas.transform.Find("Vignette").GetComponent<Image>();
-
-		if (Mathf.Abs ((float)Screen.currentResolution.width / (float)Screen.currentResolution.height - 16.0f / 9.0f) > 0.01f)
-		{
-			Vector3 offset = new Vector3(-8.5f, 3.0f, 8.0f);
-			GameObject.Find ("GUICamera").transform.Find ("Gem").transform.localPosition = offset;
-			offset = new Vector3(-8.5f, 4.1f, 10.0f);
-			GameObject.Find ("GUICamera").transform.Find ("Orb").transform.localPosition = offset;
-		}
+		overlayCanvas = GameObject.Find ("Overlay Canvas").GetComponent<Canvas>();
+        worldCanvas = GameObject.Find("World Canvas").GetComponent<Canvas>();
+		worldCanvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
+		vignette = overlayCanvas.transform.Find("Vignette").GetComponent<Image>();
 	}
 
 	// Update is called once per frame
@@ -113,12 +107,12 @@ public class PlayerController : MonoBehaviour
 		if (other.GetComponent<scrLightOrb>())
 		{
 			++LightScore;
-			canvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
+			worldCanvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
 		}
 		else if (other.GetComponent<scrGem>())
 		{
 			++GemScore;
-			canvas.transform.Find ("Gems").GetComponent<Text>().text = GemScore.ToString();
+			worldCanvas.transform.Find ("Gems").GetComponent<Text>().text = GemScore.ToString();
 		}
 	}
 }

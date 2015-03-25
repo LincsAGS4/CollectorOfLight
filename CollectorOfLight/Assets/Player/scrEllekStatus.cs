@@ -37,7 +37,7 @@ public class scrEllekStatus : MonoBehaviour
 	void Start ()
 	{
 		originalFOV = Camera.main.fieldOfView;
-		canvas = GameObject.Find ("Canvas").GetComponent<Canvas>();
+		canvas = GameObject.Find ("World Canvas").GetComponent<Canvas>();
 	}
 	
 	// Update is called once per frame

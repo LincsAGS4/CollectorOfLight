@@ -237,6 +237,10 @@ Prefab:
       propertyPath: m_AnchorMax.y
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 103506, guid: 765ae123e006cac49a4ce43a5190a73b, type: 2}
+      propertyPath: m_IsActive
+      value: 1
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 765ae123e006cac49a4ce43a5190a73b, type: 2}
   m_RootGameObject: {fileID: 393961500}
@@ -5235,7 +5239,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1739844391
 RectTransform:
   m_ObjectHideFlags: 0

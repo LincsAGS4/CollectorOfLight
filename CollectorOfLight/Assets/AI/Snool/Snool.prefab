@@ -202,7 +202,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-<<<<<<< HEAD
 --- !u!65 &6532284
 BoxCollider:
   m_ObjectHideFlags: 1
@@ -215,7 +214,6 @@ BoxCollider:
   serializedVersion: 2
   m_Size: {x: 1, y: 1, z: 1}
   m_Center: {x: 0, y: 0, z: 0}
-=======
 --- !u!82 &8271564
 AudioSource:
   m_ObjectHideFlags: 1
@@ -235,7 +233,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -274,7 +272,6 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
->>>>>>> origin/James
 --- !u!114 &11431932
 MonoBehaviour:
   m_ObjectHideFlags: 1

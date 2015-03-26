@@ -65,21 +65,29 @@ public sealed class scrPool : MonoBehaviour
 
 	public scrPoolable Create(params object[] initParams)
 	{
-		if (index != Capacity)
+		try
 		{
-			// Activate and initialise the item.
-			scrPoolable item = pool[index];
-			item.gameObject.SetActive(true);
-			item.Init(initParams);
+			if (index != Capacity)
+			{
+				// Activate and initialise the item.
+				scrPoolable item = pool[index];
+				item.gameObject.SetActive(true);
+				item.Init(initParams);
 
-			// Shift the index to the next available item.
-			index = links[index];
+				// Shift the index to the next available item.
+				index = links[index];
 
-			--Remaining;
+				--Remaining;
 
-			return item;
+				return item;
+			}
+
+
 		}
-
+		catch
+		{
+			Debug.Log (Identifier);
+		}
 		return null;
 	}
 }

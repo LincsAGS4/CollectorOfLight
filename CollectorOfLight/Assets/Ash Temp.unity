@@ -490,7 +490,7 @@ Canvas:
   m_OverridePixelPerfect: 0
   m_SortingLayerID: 0
   m_SortingOrder: 0
---- !u!1001 &448988896
+--- !u!1001 &497877859
 Prefab:
   m_ObjectHideFlags: 0
   serializedVersion: 2
@@ -528,10 +528,6 @@ Prefab:
     - target: {fileID: 433070, guid: f47cdc86e7db97747b57b1aa8bc57874, type: 2}
       propertyPath: m_RootOrder
       value: 6
-      objectReference: {fileID: 0}
-    - target: {fileID: 11433082, guid: f47cdc86e7db97747b57b1aa8bc57874, type: 2}
-      propertyPath: m_Enabled
-      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: f47cdc86e7db97747b57b1aa8bc57874, type: 2}
@@ -5099,7 +5095,7 @@ MeshFilter:
 GameObject:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 133070, guid: f47cdc86e7db97747b57b1aa8bc57874, type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   serializedVersion: 4
   m_Component:
   - 4: {fileID: 1609270030}
@@ -5109,7 +5105,6 @@ GameObject:
   - 114: {fileID: 1609270025}
   - 114: {fileID: 1609270031}
   - 114: {fileID: 1609270026}
-  - 114: {fileID: 1609270032}
   m_Layer: 0
   m_Name: ObstacleGenerator
   m_TagString: Untagged
@@ -5122,7 +5117,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11433070, guid: f47cdc86e7db97747b57b1aa8bc57874,
     type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   m_GameObject: {fileID: 1609270024}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -5139,7 +5134,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11433072, guid: f47cdc86e7db97747b57b1aa8bc57874,
     type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   m_GameObject: {fileID: 1609270024}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -5156,7 +5151,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11433074, guid: f47cdc86e7db97747b57b1aa8bc57874,
     type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   m_GameObject: {fileID: 1609270024}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -5173,7 +5168,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11433076, guid: f47cdc86e7db97747b57b1aa8bc57874,
     type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   m_GameObject: {fileID: 1609270024}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -5189,7 +5184,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11433078, guid: f47cdc86e7db97747b57b1aa8bc57874,
     type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   m_GameObject: {fileID: 1609270024}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -5201,7 +5196,7 @@ MonoBehaviour:
 Transform:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 433070, guid: f47cdc86e7db97747b57b1aa8bc57874, type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   m_GameObject: {fileID: 1609270024}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 2, y: -1, z: 0}
@@ -5214,7 +5209,7 @@ MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 11433080, guid: f47cdc86e7db97747b57b1aa8bc57874,
     type: 2}
-  m_PrefabInternal: {fileID: 448988896}
+  m_PrefabInternal: {fileID: 497877859}
   m_GameObject: {fileID: 1609270024}
   m_Enabled: 1
   m_EditorHideFlags: 0
@@ -5225,22 +5220,6 @@ MonoBehaviour:
   Capacity: 40
   Prefabs:
   - {fileID: 196188, guid: 963aec8a3e6816c42ab230b5eab19b05, type: 2}
---- !u!114 &1609270032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11433082, guid: f47cdc86e7db97747b57b1aa8bc57874,
-    type: 2}
-  m_PrefabInternal: {fileID: 448988896}
-  m_GameObject: {fileID: 1609270024}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Identifier: Ramps
-  Capacity: 20
-  Prefabs:
-  - {fileID: 100000, guid: 3356fc5a4f30ee046a709ff8ef6e1cd3, type: 2}
 --- !u!1 &1739844390
 GameObject:
   m_ObjectHideFlags: 0

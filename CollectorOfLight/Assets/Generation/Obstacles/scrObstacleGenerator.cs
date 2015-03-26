@@ -87,7 +87,7 @@ public class scrObstacleGenerator : scrGenerator
 			{			
 				// Choose an obstacle to generate.
 				scrPoolable obstacle = null;
-				switch (Random.Range (0, 4))
+				switch (Random.Range (0, 3))
 				{
 				case 0:
 					obstacle = pools["Plant Clusters"].Create (position.x, position.y, 16);
@@ -98,9 +98,6 @@ public class scrObstacleGenerator : scrGenerator
 				case 2:
 					obstacle = pools["Pillars and Rocks"].Create(position.x, position.y);
 					break;
-                case 3:
-                    obstacle = pools["Ramps"].Create(position.x, position.y);
-                    break;
 				}
 			}
 		}

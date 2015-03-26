@@ -122,7 +122,7 @@ AudioSource:
   MinDistance: 1
   MaxDistance: 500
   Pan2D: 0
-  rolloffMode: 1
+  rolloffMode: 0
   BypassEffects: 0
   BypassListenerEffects: 0
   BypassReverbZones: 0
@@ -172,6 +172,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: d2c7fd8880bfe9741b4aebc1525fd4b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  DestroyOnExpire: 0
   model: {fileID: 195528}
   currentSpeed: 0
   adjustedSpeed: 0
@@ -179,7 +180,7 @@ MonoBehaviour:
   verticalAngle: 0
   MoveModelToLandscape: 1
   RagdollActive: 0
-  scream: {fileID: 8300000, guid: 6d65a97607deb124e9143f39968ef7d3, type: 3}
+  scream: {fileID: 8300000, guid: a68b0cca8189a1d4aa59cb17f0ea6652, type: 3}
 --- !u!135 &13595530
 SphereCollider:
   m_ObjectHideFlags: 1

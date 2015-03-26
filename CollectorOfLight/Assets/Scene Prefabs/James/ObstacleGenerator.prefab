@@ -1,0 +1,153 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!1 &196012
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 496012}
+  - 114: {fileID: 11496020}
+  - 114: {fileID: 11496018}
+  - 114: {fileID: 11496016}
+  - 114: {fileID: 11496012}
+  - 114: {fileID: 11496022}
+  - 114: {fileID: 11496014}
+  - 114: {fileID: 11496024}
+  m_Layer: 0
+  m_Name: ObstacleGenerator
+  m_TagString: Untagged
+  m_Icon: {fileID: -215833656, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &496012
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 2, y: -1, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 0
+--- !u!114 &11496012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Pillars and Rocks
+  Capacity: 80
+  Prefabs:
+  - {fileID: 164226, guid: ddbbe01fe06da1d49802f5d79a8ccaa9, type: 2}
+  - {fileID: 109208, guid: b55a30b8ec640a644b59447284324b89, type: 2}
+--- !u!114 &11496014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Large Trees
+  Capacity: 20
+  Prefabs:
+  - {fileID: 187792, guid: 5307ffd406fe93e4d913bd8c01dbbc76, type: 2}
+  - {fileID: 146776, guid: 6ed52e60d3d10f4439b337e6f6888c49, type: 2}
+--- !u!114 &11496016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Trees and Shrubs
+  Capacity: 60
+  Prefabs:
+  - {fileID: 140910, guid: b065afa14f313b6488aa06343f555b40, type: 2}
+  - {fileID: 151860, guid: 7e639bf2debb00a4a8a7f7bb7ff7fabf, type: 2}
+--- !u!114 &11496018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Plant Clusters
+  Capacity: 80
+  Prefabs:
+  - {fileID: 164082, guid: 8592e296c36889749b8bd29844f2f7dc, type: 2}
+--- !u!114 &11496020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 7b38f0c53c71bd84d9ba28f955733f6c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Generating: 1
+--- !u!114 &11496022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Logs
+  Capacity: 40
+  Prefabs:
+  - {fileID: 196188, guid: 963aec8a3e6816c42ab230b5eab19b05, type: 2}
+--- !u!114 &11496024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 196012}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Identifier: Ramps
+  Capacity: 20
+  Prefabs:
+  - {fileID: 100000, guid: 3356fc5a4f30ee046a709ff8ef6e1cd3, type: 2}
+--- !u!1001 &100100000
+Prefab:
+  m_ObjectHideFlags: 1
+  serializedVersion: 2
+  m_Modification:
+    m_TransformParent: {fileID: 0}
+    m_Modifications: []
+    m_RemovedComponents: []
+  m_ParentPrefab: {fileID: 0}
+  m_RootGameObject: {fileID: 196012}
+  m_IsPrefabParent: 1
+  m_IsExploded: 1

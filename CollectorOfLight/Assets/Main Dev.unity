@@ -319,6 +319,7 @@ GameObject:
   - 92: {fileID: 352559585}
   - 124: {fileID: 352559584}
   - 81: {fileID: 352559583}
+  - 82: {fileID: 352559588}
   m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -396,6 +397,64 @@ Transform:
   - {fileID: 1085218564}
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!82 &352559588
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 352559582}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: c877b14c7b63a3c42a6045c9c560b031, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .5
+  m_Pitch: 1.10000002
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 1000
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
 --- !u!1 &393961500
 GameObject:
   m_ObjectHideFlags: 0
@@ -1867,7 +1926,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Height: .349999994
-  LayerCount: 25
+  LayerCount: 20
   LayerMaterial: {fileID: 2100000, guid: 1ec0ef2b9dbd125408488f67414df96b, type: 2}
 --- !u!23 &668163280
 Renderer:
@@ -2416,7 +2475,7 @@ Prefab:
       objectReference: {fileID: 1957961649}
     - target: {fileID: 11481570, guid: 41a89c4e1d2c6d346b535dec82d9a043, type: 2}
       propertyPath: LayerCount
-      value: 25
+      value: 20
       objectReference: {fileID: 0}
     - target: {fileID: 11481570, guid: 41a89c4e1d2c6d346b535dec82d9a043, type: 2}
       propertyPath: Height

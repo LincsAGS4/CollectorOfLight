@@ -1,0 +1,16 @@
+fileFormatVersion: 2
+<<<<<<< HEAD
+guid: e2ab41f9583c3db4eaca4344d7dd37e0
+=======
+guid: 93c069197a3574c4a8315cdf10b81afc
+>>>>>>> origin/James
+AudioImporter:
+  serializedVersion: 4
+  format: 0
+  quality: -1
+  stream: 1
+  3D: 1
+  forceToMono: 0
+  useHardware: 0
+  loopable: 0
+  userData: 

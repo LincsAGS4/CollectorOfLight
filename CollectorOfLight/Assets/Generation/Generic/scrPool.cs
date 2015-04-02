@@ -73,6 +73,12 @@ public sealed class scrPool : MonoBehaviour
 				scrPoolable item = pool[index];
 				item.gameObject.SetActive(true);
 				item.Init(initParams);
+				Renderer[] allComponents = item.gameObject.GetComponentsInChildren<Renderer>();
+
+				foreach(Renderer r in allComponents)
+				{
+					r.material.SetColor("_Color", new Color(Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f), Random.Range(0.0f, 1.0f)));
+				}
 
 				// Shift the index to the next available item.
 				index = links[index];

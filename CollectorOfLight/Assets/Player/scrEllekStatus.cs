@@ -2,6 +2,7 @@
 using UnityEngine.UI;
 using System.Collections;
 
+[System.Serializable]
 public class scrEllekStatus : MonoBehaviour
 {
 	#region Powerups
@@ -9,18 +10,18 @@ public class scrEllekStatus : MonoBehaviour
 	
 	// Speed powerup.
 	public static float SpeedPowerupBoost = 2.0f;
-	bool speedPowerupActive = false;
+	public bool speedPowerupActive = false;
 	float speedPowerupTimer = 0.0f;
 	
 	// Ghost powerup.
 	float ghostPowerupRespawnDuration = 3.0f;
-	bool ghostPowerupActive = false;
+	public bool ghostPowerupActive = false;
 	float ghostPowerupTimer = 0.0f;
 	
 	// Magnet powerup.
 	public static float MagnetPowerupRadius = 100.0f;
 	public static float MagnetAttractSpeed = 1.0f;
-	bool magnetPowerupActive = false;
+	public bool magnetPowerupActive = false;
 	float magnetPowerupTimer = 0.0f;
 	
 	// Light powerup.
@@ -32,6 +33,7 @@ public class scrEllekStatus : MonoBehaviour
 
 	public GameObject FakeOrbPrefab;
 	private Canvas canvas;
+
 
 	// Use this for initialization
 	void Start ()
@@ -45,20 +47,21 @@ public class scrEllekStatus : MonoBehaviour
 	{
 		if (speedPowerupActive)
 		{
-			speedPowerupTimer += Time.deltaTime;
-			if (speedPowerupTimer >= PowerupDuration)
+			ellekSystem.currentSpeed = ellekSystem.standardSpeed * Mathf.Lerp (SpeedPowerupBoost, 1.0f, speedPowerupTimer / PowerupDuration);
+			Camera.main.fieldOfView = Mathf.Lerp (Camera.main.fieldOfView, Mathf.Lerp (originalFOV + 20, originalFOV, speedPowerupTimer / PowerupDuration), 0.2f);
+			speedPowerupTimer -= Time.deltaTime;
+			if (speedPowerupTimer <= 0)
 			{
 				speedPowerupActive = false;
 				speedPowerupTimer = 0.0f;
 			}
-			ellekSystem.currentSpeed = ellekSystem.standardSpeed * Mathf.Lerp (SpeedPowerupBoost, 1.0f, speedPowerupTimer / PowerupDuration);
-			Camera.main.fieldOfView = Mathf.Lerp (Camera.main.fieldOfView, Mathf.Lerp (originalFOV + 20, originalFOV, speedPowerupTimer / PowerupDuration), 0.2f);
+
 		}
 		
 		if (ghostPowerupActive)
 		{
-			ghostPowerupTimer += Time.deltaTime;
-			if (ghostPowerupTimer >= PowerupDuration)
+			ghostPowerupTimer -= Time.deltaTime;
+			if (ghostPowerupTimer <= 0)
 			{
 				ghostPowerupActive = false;
 				ghostPowerupTimer = 0.0f;
@@ -78,8 +81,8 @@ public class scrEllekStatus : MonoBehaviour
 				}
 			}
 			
-			magnetPowerupTimer += Time.deltaTime;
-			if (magnetPowerupTimer >= PowerupDuration)
+			magnetPowerupTimer -= Time.deltaTime;
+			if (magnetPowerupTimer <= 0)
 			{
 				magnetPowerupActive = false;
 				magnetPowerupTimer = 0.0f;
@@ -90,7 +93,7 @@ public class scrEllekStatus : MonoBehaviour
 	
 	void OnTriggerEnter(Collider other)
 	{
-		if (!ellekSystem.RagdollActive && other.gameObject.layer == LayerMask.NameToLayer("Obstacle"))
+		if (!ellekSystem.RagdollActive && other.gameObject.layer == LayerMask.NameToLayer("Powerup"))
 		{
 			if (other.GetComponent<scrPowerup>())
 			{
@@ -110,16 +113,21 @@ public class scrEllekStatus : MonoBehaviour
 					break;
 				case scrPowerup.Powerup.MoreLight:
 					GetComponent<PlayerController>().LightScore += LightPowerupReward;
+					canvas.transform.Find ("Light").GetComponent<Text>().text = GetComponent<PlayerController>().LightScore.ToString();
 					break;
 				}
 			}
-			else if (!ghostPowerupActive && !other.GetComponent<scrLightOrb>())
-			{
+		}
 
+		if (!ellekSystem.RagdollActive && other.gameObject.layer == LayerMask.NameToLayer ("Obstacle")) 
+		{
+			if (!ghostPowerupActive && !other.GetComponent<scrLightOrb>())
+			{
+				
 				ellekSystem.Ragdollize();
 				ghostPowerupActive = true;
 				ghostPowerupTimer = ghostPowerupRespawnDuration;
-
+				
 				StartCoroutine(ReleaseOrbs());
 			}
 		}

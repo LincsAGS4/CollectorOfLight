@@ -3895,8 +3895,12 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11497258, guid: 8daf47a3adaa7bb4d9566c8d436e4ad5, type: 2}
       propertyPath: m_Enabled
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11497258, guid: 8daf47a3adaa7bb4d9566c8d436e4ad5, type: 2}
+      propertyPath: Prefabs.Array.data[0]
+      value: 
+      objectReference: {fileID: 131938, guid: 25352de66cd0a29448aaad3d7331c8e4, type: 2}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 8daf47a3adaa7bb4d9566c8d436e4ad5, type: 2}
   m_RootGameObject: {fileID: 1897210357}
@@ -6645,7 +6649,7 @@ MonoBehaviour:
     type: 2}
   m_PrefabInternal: {fileID: 1432345023}
   m_GameObject: {fileID: 1897210357}
-  m_Enabled: 0
+  m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
   m_Name: 
@@ -6653,7 +6657,7 @@ MonoBehaviour:
   Identifier: Snool
   Capacity: 20
   Prefabs:
-  - {fileID: 156558, guid: 71505827a27457142b4a12fbf4efcb62, type: 2}
+  - {fileID: 131938, guid: 25352de66cd0a29448aaad3d7331c8e4, type: 2}
 --- !u!114 &1897210361
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -6876,6 +6880,7 @@ MonoBehaviour:
   currentFacing: 0
   inputController: {fileID: 1957961651}
   ellekSystem: {fileID: 1957961650}
+  ellekStatus: {fileID: 0}
   KinectSlider: {fileID: 1739844392}
 --- !u!54 &1957961653
 Rigidbody:
@@ -6905,6 +6910,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0cf3b5a8f87bc449d2ec2e49dc80d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedPowerupActive: 0
+  ghostPowerupActive: 0
+  magnetPowerupActive: 0
   ellekSystem: {fileID: 1957961650}
   FakeOrbPrefab: {fileID: 152118, guid: 9d64694c92cfa69428aa79f7c6d94284, type: 2}
 --- !u!1 &1966479811

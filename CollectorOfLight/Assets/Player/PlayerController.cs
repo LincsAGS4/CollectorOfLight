@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
 
     public InputController inputController;
     public EllekMoveScript ellekSystem;
+	public scrEllekStatus ellekStatus;
 
 	public Slider KinectSlider;
 	private Canvas overlayCanvas;
@@ -33,6 +34,7 @@ public class PlayerController : MonoBehaviour
 
 		overlayCanvas = GameObject.Find ("Overlay Canvas").GetComponent<Canvas>();
         worldCanvas = GameObject.Find("World Canvas").GetComponent<Canvas>();
+		ellekStatus = GameObject.Find ("Player").GetComponent<scrEllekStatus> ();
 		worldCanvas.transform.Find ("Light").GetComponent<Text>().text = LightScore.ToString();
 		vignette = overlayCanvas.transform.Find("Vignette").GetComponent<Image>();
 	}
@@ -53,10 +55,25 @@ public class PlayerController : MonoBehaviour
 		{
 			Debug.Log("Turning did not register; player rotated too far.");
 		}
-
 		
+		if (ellekStatus.speedPowerupActive) 
+		{
+			vignette.color = Color.Lerp (Color.clear, Color.red, (LightScore * LightScore) / 250.0f);
+		} 
+		else if (ellekStatus.ghostPowerupActive && !ellekSystem.RagdollActive) 
+		{
+			vignette.color = Color.Lerp (Color.clear, Color.blue, (LightScore * LightScore) / 250.0f);
+		} 
+		else if (ellekStatus.magnetPowerupActive) 
+		{
+			vignette.color = Color.Lerp (Color.clear, Color.magenta, (LightScore * LightScore) / 250.0f);
+		}
+		else
+		{
+			vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 2500.0f);
+		}
 		// Set the vignette colour to exponentially get whiter with the light score, with full white occurring at 50 orbs.
-		vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 2500.0f);
+
 
 		Speed2D = ellekSystem.adjustedSpeed;
 		Velocity2D = new Vector2(transform.forward.x, transform.forward.z) * Speed2D;
@@ -85,7 +102,7 @@ public class PlayerController : MonoBehaviour
         }
 
 		// Set the vignette colour to exponentially get whiter with the light score, with full white occurring at 100 orbs.
-		vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 10000.0f);
+		//vignette.color = Color.Lerp (Color.clear, Color.white, (LightScore * LightScore) / 10000.0f);
 	}
 
 	void FixedUpdate()

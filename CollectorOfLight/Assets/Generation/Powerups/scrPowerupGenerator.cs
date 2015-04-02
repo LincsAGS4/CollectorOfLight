@@ -29,7 +29,7 @@ public class scrPowerupGenerator : scrGenerator
 		{			
 			// Choose an powerup to generate.
 			scrPowerup.Powerup effect = (scrPowerup.Powerup)Random.Range (0, 4);
-
+			//scrPowerup.Powerup effect = (scrPowerup.Powerup)3;
 			// Generate the powerup at the centre of the plant cluster. No plants should be here, since they have a minimum radius away from the centre.
 			scrPoolable powerup = pool.Create(plantCluster.transform.position.x, plantCluster.transform.position.z, effect);
 		}

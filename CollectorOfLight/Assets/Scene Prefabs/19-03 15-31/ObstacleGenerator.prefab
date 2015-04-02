@@ -14,7 +14,6 @@ GameObject:
   - 114: {fileID: 11433070}
   - 114: {fileID: 11433080}
   - 114: {fileID: 11433072}
-  - 114: {fileID: 11433082}
   m_Layer: 0
   m_Name: ObstacleGenerator
   m_TagString: Untagged
@@ -124,21 +123,6 @@ MonoBehaviour:
   Capacity: 40
   Prefabs:
   - {fileID: 196188, guid: 963aec8a3e6816c42ab230b5eab19b05, type: 2}
---- !u!114 &11433082
-MonoBehaviour:
-  m_ObjectHideFlags: 1
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 100100000}
-  m_GameObject: {fileID: 133070}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Identifier: Ramps
-  Capacity: 20
-  Prefabs:
-  - {fileID: 100000, guid: 3356fc5a4f30ee046a709ff8ef6e1cd3, type: 2}
 --- !u!1001 &100100000
 Prefab:
   m_ObjectHideFlags: 1

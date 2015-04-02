@@ -320,6 +320,7 @@ GameObject:
   - 124: {fileID: 352559584}
   - 81: {fileID: 352559583}
   - 82: {fileID: 352559588}
+  - 114: {fileID: 352559589}
   m_Layer: 2
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -405,7 +406,7 @@ AudioSource:
   m_GameObject: {fileID: 352559582}
   m_Enabled: 1
   serializedVersion: 3
-  m_audioClip: {fileID: 8300000, guid: c877b14c7b63a3c42a6045c9c560b031, type: 3}
+  m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
   m_Volume: .5
   m_Pitch: 1.10000002
@@ -455,6 +456,25 @@ AudioSource:
       tangentMode: 0
     m_PreInfinity: 2
     m_PostInfinity: 2
+--- !u!114 &352559589
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 352559582}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 372b4e92c974dd949a6420113e802158, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  soundtrack:
+  - {fileID: 8300000, guid: 8c3713cd1b89ecd4a857249931b58db2, type: 3}
+  - {fileID: 8300000, guid: 9cfc855da439dbb489a60e63bba40c6d, type: 3}
+  - {fileID: 8300000, guid: c877b14c7b63a3c42a6045c9c560b031, type: 3}
+  - {fileID: 8300000, guid: adf2cec14f9ee794086e350b7aa1054f, type: 3}
+  - {fileID: 8300000, guid: 19665cc51ada2a247a280c80cb7ad8fd, type: 3}
+  - {fileID: 8300000, guid: ae01b8c09e23d624f8a6faaebaaa665c, type: 3}
+  - {fileID: 8300000, guid: 66c586115803c034397d395a10adb73d, type: 3}
 --- !u!1 &393961500
 GameObject:
   m_ObjectHideFlags: 0
@@ -5169,7 +5189,6 @@ GameObject:
   - 114: {fileID: 1609270025}
   - 114: {fileID: 1609270031}
   - 114: {fileID: 1609270026}
-  - 114: {fileID: 1609270032}
   m_Layer: 0
   m_Name: ObstacleGenerator
   m_TagString: Untagged
@@ -5285,22 +5304,6 @@ MonoBehaviour:
   Capacity: 40
   Prefabs:
   - {fileID: 196188, guid: 963aec8a3e6816c42ab230b5eab19b05, type: 2}
---- !u!114 &1609270032
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 11433082, guid: f47cdc86e7db97747b57b1aa8bc57874,
-    type: 2}
-  m_PrefabInternal: {fileID: 448988896}
-  m_GameObject: {fileID: 1609270024}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1f80e1bf7e985614fb0dff1e47aa22a8, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  Identifier: Ramps
-  Capacity: 20
-  Prefabs:
-  - {fileID: 100000, guid: 3356fc5a4f30ee046a709ff8ef6e1cd3, type: 2}
 --- !u!1 &1739844390
 GameObject:
   m_ObjectHideFlags: 0

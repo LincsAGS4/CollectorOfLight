@@ -6,6 +6,8 @@ public class scrPowerup : scrPoolable
 	const float LEVITATE_HEIGHT = 2.2f;	// Height above the ground the light bobs up and down.
 	const float BOB_HEIGHT = 0.5f;	// Maximum height of a bob.
 	const float BOB_RATE = 0.5f;	// Rate at which the light bobs up and down.
+	public AudioClip pickup_1;
+	public AudioClip pickup_2;
 
 	public enum Powerup
 	{
@@ -63,6 +65,12 @@ public class scrPowerup : scrPoolable
 	{		
 		// Deactivate.
 		Expired = true;
+		//Play sound
+		if (other.gameObject.tag == "Player")
+		{
+			audio.PlayOneShot(pickup_1);
+			audio.PlayOneShot(pickup_2);
+		}
 	}
 
 

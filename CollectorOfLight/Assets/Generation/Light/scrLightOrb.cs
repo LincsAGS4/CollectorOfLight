@@ -17,6 +17,7 @@ public class scrLightOrb : scrPoolable
 
 	public AudioClip pickup_1;
 	public AudioClip pickup_2;
+
 	void Awake ()
 	{
 		line = GetComponent<LineRenderer>();
@@ -43,8 +44,11 @@ public class scrLightOrb : scrPoolable
 
 	void OnTriggerEnter(Collider other)
 	{
-		audio.PlayOneShot(pickup_1);
-		audio.PlayOneShot(pickup_2);
+		if (other.gameObject.tag == "Player")
+		{
+			audio.PlayOneShot(pickup_1);
+			audio.PlayOneShot(pickup_2);
+		}
 		// Remove this orb from the series by connecting the next and previous orbs.
 		if (next != null)
 			next.previous = previous;

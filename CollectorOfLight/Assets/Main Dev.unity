@@ -408,7 +408,7 @@ AudioSource:
   serializedVersion: 3
   m_audioClip: {fileID: 0}
   m_PlayOnAwake: 1
-  m_Volume: .5
+  m_Volume: .200000003
   m_Pitch: 1.10000002
   Loop: 1
   Mute: 0
@@ -468,7 +468,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   soundtrack:
-  - {fileID: 8300000, guid: 8c3713cd1b89ecd4a857249931b58db2, type: 3}
   - {fileID: 8300000, guid: 9cfc855da439dbb489a60e63bba40c6d, type: 3}
   - {fileID: 8300000, guid: c877b14c7b63a3c42a6045c9c560b031, type: 3}
   - {fileID: 8300000, guid: adf2cec14f9ee794086e350b7aa1054f, type: 3}
@@ -2365,6 +2364,10 @@ Prefab:
       propertyPath: KinectSlider
       value: 
       objectReference: {fileID: 1739844392}
+    - target: {fileID: 113932, guid: b12bda4150c0c354f9ee3c55629ebcbc, type: 2}
+      propertyPath: m_TagString
+      value: Player
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: b12bda4150c0c354f9ee3c55629ebcbc, type: 2}
   m_RootGameObject: {fileID: 1957961648}
@@ -6827,9 +6830,11 @@ GameObject:
   - 114: {fileID: 1957961652}
   - 54: {fileID: 1957961653}
   - 114: {fileID: 1957961654}
+  - 82: {fileID: 1957961655}
+  - 135: {fileID: 1957961656}
   m_Layer: 2
   m_Name: Player
-  m_TagString: Untagged
+  m_TagString: Player
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
@@ -6927,6 +6932,76 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   ellekSystem: {fileID: 1957961650}
   FakeOrbPrefab: {fileID: 152118, guid: 9d64694c92cfa69428aa79f7c6d94284, type: 2}
+--- !u!82 &1957961655
+AudioSource:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957961648}
+  m_Enabled: 1
+  serializedVersion: 3
+  m_audioClip: {fileID: 8300000, guid: c3c7726288fccaa41881f7e4a511675b, type: 3}
+  m_PlayOnAwake: 1
+  m_Volume: .200000003
+  m_Pitch: 1
+  Loop: 1
+  Mute: 0
+  Priority: 128
+  DopplerLevel: 1
+  MinDistance: 1
+  MaxDistance: 500
+  Pan2D: 0
+  rolloffMode: 0
+  BypassEffects: 0
+  BypassListenerEffects: 0
+  BypassReverbZones: 0
+  rolloffCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    - time: 1
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  panLevelCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 1
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+  spreadCustomCurve:
+    serializedVersion: 2
+    m_Curve:
+    - time: 0
+      value: 0
+      inSlope: 0
+      outSlope: 0
+      tangentMode: 0
+    m_PreInfinity: 2
+    m_PostInfinity: 2
+--- !u!135 &1957961656
+SphereCollider:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1957961648}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  serializedVersion: 2
+  m_Radius: .5
+  m_Center: {x: 0, y: 0, z: 0}
 --- !u!1 &1966479811
 GameObject:
   m_ObjectHideFlags: 0

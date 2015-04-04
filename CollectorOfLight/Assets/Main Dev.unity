@@ -123,7 +123,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .247464254, g: .220588207, b: 1, a: 1}
   m_Sprite: {fileID: 10907, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -410,7 +410,7 @@ AudioSource:
   m_PlayOnAwake: 1
   m_Volume: .200000003
   m_Pitch: 1.10000002
-  Loop: 1
+  Loop: 0
   Mute: 0
   Priority: 128
   DopplerLevel: 1
@@ -2095,7 +2095,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: .522058845, g: .522058845, b: .522058845, a: 1}
   m_Sprite: {fileID: 10913, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 0
   m_PreserveAspect: 0
@@ -5104,7 +5104,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 1, g: 1, b: 1, a: 1}
+  m_Color: {r: 1, g: .191176474, b: .191176474, a: 1}
   m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   m_Type: 1
   m_PreserveAspect: 0
@@ -5322,7 +5322,7 @@ GameObject:
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
-  m_IsActive: 0
+  m_IsActive: 1
 --- !u!224 &1739844391
 RectTransform:
   m_ObjectHideFlags: 0
@@ -5332,7 +5332,7 @@ RectTransform:
   m_GameObject: {fileID: 1739844390}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 0, y: 0, z: 0}
-  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_LocalScale: {x: 2, y: 2, z: 1}
   m_Children:
   - {fileID: 155430283}
   - {fileID: 2069186630}
@@ -5341,7 +5341,7 @@ RectTransform:
   m_RootOrder: 0
   m_AnchorMin: {x: .5, y: .5}
   m_AnchorMax: {x: .5, y: .5}
-  m_AnchoredPosition: {x: 0, y: 260}
+  m_AnchoredPosition: {x: 0, y: 301}
   m_SizeDelta: {x: 200, y: 20}
   m_Pivot: {x: .5, y: .5}
 --- !u!114 &1739844392
@@ -6901,6 +6901,7 @@ MonoBehaviour:
   currentFacing: 0
   inputController: {fileID: 1957961651}
   ellekSystem: {fileID: 1957961650}
+  ellekStatus: {fileID: 0}
   KinectSlider: {fileID: 1739844392}
 --- !u!54 &1957961653
 Rigidbody:
@@ -6930,6 +6931,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9e0cf3b5a8f87bc449d2ec2e49dc80d2, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  speedPowerupActive: 0
+  ghostPowerupActive: 0
+  magnetPowerupActive: 0
   ellekSystem: {fileID: 1957961650}
   FakeOrbPrefab: {fileID: 152118, guid: 9d64694c92cfa69428aa79f7c6d94284, type: 2}
 --- !u!82 &1957961655

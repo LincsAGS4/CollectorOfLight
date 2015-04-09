@@ -7,6 +7,7 @@ public class Countdown : MonoBehaviour {
 	public Text gameStart;
 	float secsTilStart;
 	float secsTilStartDisp;
+	public string sceneToLoad, message;
 
 	// Use this for initialization
 	void Start () {
@@ -20,9 +21,9 @@ public class Countdown : MonoBehaviour {
 		secsTilStart -= Time.deltaTime;
 		secsTilStartDisp = Mathf.RoundToInt (secsTilStart);
 
-		gameStart.text = "The game will start in..." + secsTilStartDisp.ToString();
+		gameStart.text = message + secsTilStartDisp.ToString();
 		if (secsTilStart <= 0) {
-			Application.LoadLevel("Main Dev");
+			Application.LoadLevel(sceneToLoad);
 		}
 	
 	}

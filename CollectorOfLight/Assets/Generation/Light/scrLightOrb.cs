@@ -18,10 +18,13 @@ public class scrLightOrb : scrPoolable
 	public AudioClip pickup_1;
 	public AudioClip pickup_2;
 
+	GameManager gm;
+
 	void Awake ()
 	{
 		line = GetComponent<LineRenderer>();
 		subline = transform.Find ("Orb").GetComponent<LineRenderer>();
+		gm = GameObject.Find ("Game Manager").GetComponent<GameManager> ();
 	}
 
 	protected override void Update ()
@@ -42,10 +45,14 @@ public class scrLightOrb : scrPoolable
 		base.Update();
 	}
 
+
 	void OnTriggerEnter(Collider other)
 	{
+		//Debug.Log("HIT PLAYER");
 		if (other.gameObject.tag == "Player")
 		{
+			Debug.Log("HIT PLAYER");
+			gm.AddSeconds(2.0f);
 			audio.PlayOneShot(pickup_1);
 			audio.PlayOneShot(pickup_2);
 		}

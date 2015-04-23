@@ -102,7 +102,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fdb7ecb7c01c3fc469b018f0651f1d08, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timed: 1
+  timed: 0
 --- !u!4 &54280398
 Transform:
   m_ObjectHideFlags: 0
@@ -328,7 +328,7 @@ Prefab:
       objectReference: {fileID: 0}
     - target: {fileID: 11451648, guid: 272a14e0235a66342a12e6228daebf41, type: 2}
       propertyPath: timed
-      value: 1
+      value: 0
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 272a14e0235a66342a12e6228daebf41, type: 2}
